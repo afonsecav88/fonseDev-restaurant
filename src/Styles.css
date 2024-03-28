@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  /* background-color: rgb(241 245 249 / var(--tw-bg-opacity)); */
+}
+
+.navigate-Active {
+  color: #2a9d8f;
+  border-top: #2a9d8f solid 2px;
+  border-bottom: #2a9d8f 2px solid;
+  padding: 0 rem;
+  /* border-radius: 0.3rem; */
+}
+
+/* .navigate-Active {
+  background-color: #2a9d8f;
+  color: #2a9d8f;
+  padding-top: 0.2rem;
+  border-radius: 0.5rem;
+  width: 5.2rem;
+  height: 2.0rem;
+} */
