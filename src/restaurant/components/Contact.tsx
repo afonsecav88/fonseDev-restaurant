@@ -3,6 +3,7 @@ import { ContactDetails } from '../shared/pages/ContactDetails';
 import { Button, Input, Textarea } from '@nextui-org/react';
 import { useContactFormValidator } from '../hooks/useContactFormValidator';
 import { ContactData } from '../shared/Models/contactData';
+import { UseSendMail } from '../hooks/useSendMail';
 
 export const Contact = () => {
   const { yupResolver, schemaValidator } = useContactFormValidator();
@@ -18,7 +19,7 @@ export const Contact = () => {
   });
 
   const onSubmit: SubmitHandler<ContactData> = (data: ContactData) => {
-    console.log('Datos :', data);
+    UseSendMail(data);
     reset();
   };
 
