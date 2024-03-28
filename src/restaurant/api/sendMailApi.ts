@@ -1,6 +1,5 @@
 import axios from 'axios';
-
-const APIKEY = ""
+import { APIKEY } from '../../../config';
 
 export const sendMailApi = axios.create({
   baseURL: `https://api.mailjet.com/v3.1/send`,
