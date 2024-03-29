@@ -2,7 +2,7 @@ import axios from 'axios';
 import { EMAIL } from '../../../config';
 import { ContactData } from '../shared/Models/contactData';
 
-export const sendMailService = (dataMail: ContactData) => {
+export const sendMailService = async (dataMail: ContactData) => {
   const data = JSON.stringify({
     Messages: [
       {
@@ -23,7 +23,7 @@ export const sendMailService = (dataMail: ContactData) => {
     ],
   });
 
-  return axios
+  return await axios
     .post<ContactData>(data)
     .then(() => {
       console.log(data);

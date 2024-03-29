@@ -6,6 +6,6 @@ export const sendMailApi = axios.create({
   method: 'post',
   headers: {
     'Content-Type': 'application/json',
-    Authorization: `Basic <${APIKEY}>`,
+    Authorization: `Basic ${APIKEY}`,
   },
 });

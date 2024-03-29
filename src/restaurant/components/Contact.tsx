@@ -26,6 +26,7 @@ export const Contact = () => {
   return (
     <div className="flex flex-col sm:flex-row sm:justify-center pl-10">
       <form
+        method="post"
         onSubmit={handleSubmit(onSubmit)}
         className=" flex flex-col gap-5 pr-10 text-default-500 text-small mb-8 w-80"
       >
@@ -40,6 +41,7 @@ export const Contact = () => {
               placeholder="nombre *"
               onChange={onChange}
               onBlur={onBlur}
+              autoComplete="true"
             />
           )}
         />
@@ -58,6 +60,7 @@ export const Contact = () => {
               placeholder="email@gmail.com *"
               onChange={onChange}
               onBlur={onBlur}
+              autoComplete="true"
             />
           )}
         />
@@ -77,6 +80,7 @@ export const Contact = () => {
               placeholder="099998877   *"
               onChange={onChange}
               onBlur={onBlur}
+              autoComplete="true"
             />
           )}
         />
