@@ -1,6 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
 import { App } from '../../App';
-import { Reservation } from '../pages/Reservation';
+import { ReservationPage } from '../pages/ReservationPage';
 import { ContactPage } from '../pages/ContactPage';
 import { NoFoundPage } from '../pages/NoFoundPage';
 import { RestaurantLayout } from '../layout/RestaurantLayout';
@@ -16,7 +16,7 @@ export const router = createBrowserRouter([
     children: [
       {
         path: 'reservation',
-        element: <Reservation />,
+        element: <ReservationPage />,
       },
       {
         path: 'contact',
