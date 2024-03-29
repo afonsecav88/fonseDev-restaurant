@@ -3,11 +3,16 @@ import { useState } from 'react';
 import { format } from 'date-fns';
 import { DayPicker } from 'react-day-picker';
 import { es } from 'date-fns/locale';
+import { Card, CardBody } from '@nextui-org/react';
 
 export const Reservation = () => {
   const [selected, setSelected] = useState<Date>();
 
-  let footer = <p className="text-center mt-4">Que día desea reservar ?</p>;
+  let footer = (
+    <p className="text-center mt-4  font-semibold text-red-300">
+      Que día desea reservar ?
+    </p>
+  );
   if (selected) {
     footer = (
       <p className="text-center mt-4 font-semibold text-green-500 ">
@@ -16,12 +21,16 @@ export const Reservation = () => {
     );
   }
   return (
-    <DayPicker
-      mode="single"
-      selected={selected}
-      onSelect={setSelected}
-      footer={footer}
-      locale={es}
-    />
+    <Card>
+      <CardBody>
+        <DayPicker
+          mode="single"
+          selected={selected}
+          onSelect={setSelected}
+          footer={footer}
+          locale={es}
+        />
+      </CardBody>
+    </Card>
   );
 };
