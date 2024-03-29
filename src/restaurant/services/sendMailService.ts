@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { EMAIL } from '../../../config';
-import { ContactData } from '../shared/Models/contactData';
+import { ContactData } from '../shared/models/contactData';
 
 export const sendMailService = async (dataMail: ContactData) => {
   const data = JSON.stringify({

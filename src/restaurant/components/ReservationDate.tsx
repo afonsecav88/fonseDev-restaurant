@@ -5,7 +5,7 @@ import { DayPicker } from 'react-day-picker';
 import { es } from 'date-fns/locale';
 import { Card, CardBody } from '@nextui-org/react';
 
-export const Reservation = () => {
+export const ReservationDate = () => {
   const [selected, setSelected] = useState<Date>();
 
   let footer = (

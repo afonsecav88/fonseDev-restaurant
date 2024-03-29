@@ -1,11 +1,12 @@
-import { Reservation } from '../components/Reservation';
+import { ReservationDate } from '../components/ReservationDate';
 import { ReservationSteps } from '../components/ReservationSteps';
 
 export const ReservationPage = () => {
   return (
     <div className="flex flex-col items-center">
       <ReservationSteps />
-      <Reservation />
+      <ReservationDate />
+      {/* <ReservationSchedule /> */}
     </div>
   );
 };
