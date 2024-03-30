@@ -3,9 +3,6 @@ import { useState } from 'react';
 import { personCountData } from '../shared/mocks/personCountData';
 
 export const ReservationSchedule = () => {
-  //   const [] = useState([{}]);
-  //   const [] = useState([{}]);
-
   const [personData] = useState(personCountData);
   const [count, setCount] = useState<string | number>(0);
 

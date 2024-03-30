@@ -4,6 +4,7 @@ import { ReservationDate } from './ReservationDate';
 import { ReservationSchedule } from './ReservationSchedule';
 
 export const ReservationSteps = () => {
+  const [selectedDate, setSelectedDate] = useState<Date>();
   const [selected, setSelected] = useState<string | number>('step1');
   return (
     <>
@@ -18,7 +19,10 @@ export const ReservationSteps = () => {
         radius="full"
       >
         <Tab key="step1" title="Fecha">
-          <ReservationDate />
+          <ReservationDate
+            selectedDate={selectedDate}
+            setSelectedDate={setSelectedDate}
+          />
           <Link className="mt-2" size="sm" onPress={() => setSelected('step2')}>
             Elegir Dia
           </Link>
