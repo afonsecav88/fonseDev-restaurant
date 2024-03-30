@@ -5,7 +5,7 @@ export const HomePage = () => {
   return (
     <>
       <Header />
-      <main className="flex flex-col w-full sm:ml-0 flex-wrap gap-3 items-center  bg-slate-50">
+      <main className="flex flex-col w-full sm:ml-0 flex-wrap gap-3 items-center  bg-slate-50 mt-3">
         <article className="flex justify-evenly w-full pt-2 mt-3 pb-4 bg-center bg-[url('/cover-restaurant-description3.svg')]">
           <section className="flex flex-col items-center gap-6 min-w-96 md:flex-row sm:gap-3">
             <div className="my-8 mx-1 sm:pl-8">

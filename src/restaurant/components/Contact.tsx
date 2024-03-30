@@ -3,7 +3,7 @@ import { ContactDetails } from '../shared/pages/ContactDetails';
 import { Button, Input, Textarea } from '@nextui-org/react';
 import { useContactFormValidator } from '../hooks/useContactFormValidator';
 import { ContactData } from '../shared/models/contactData';
-import { UseSendMail } from '../hooks/useSendMail';
+import { UseSendEmail } from '../hooks/useSendEmail';
 
 export const Contact = () => {
   const { yupResolver, schemaValidator } = useContactFormValidator();
@@ -18,8 +18,8 @@ export const Contact = () => {
     mode: 'onTouched',
   });
 
-  const onSubmit: SubmitHandler<ContactData> = (data: ContactData) => {
-    UseSendMail(data);
+  const onSubmit: SubmitHandler<ContactData> = (data) => {
+    UseSendEmail(data);
     reset();
   };
 
@@ -123,6 +123,7 @@ export const Contact = () => {
         </Button>
       </form>
       <ContactDetails />
+      {/* {import.meta.env.VITE_SECRET} */}
     </div>
   );
 };
