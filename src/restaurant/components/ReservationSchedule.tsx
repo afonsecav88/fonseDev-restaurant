@@ -1,6 +1,4 @@
-import { Select, SelectItem } from '@nextui-org/react';
-import { Card } from '@nextui-org/card';
-import { CardBody } from '@nextui-org/react';
+import { Card, CardBody, Select, SelectItem } from '@nextui-org/react';
 import { useState } from 'react';
 import { personCountData } from '../shared/mocks/personCountData';
 
@@ -9,30 +7,29 @@ export const ReservationSchedule = () => {
   //   const [] = useState([{}]);
 
   const [personData] = useState(personCountData);
-  const [count, setCount] = useState<string>('');
+  const [count, setCount] = useState<string | number>(0);
 
   return (
-    <Card>
+    <Card className="w-64">
       <CardBody>
         <Select
-          label="Seleccione la cantidad de personas"
-          placeholder="Seleccione cantidad"
+          isRequired
+          label="Favorite Animal"
+          placeholder="Select an animal"
+          defaultSelectedKeys={personCountData[0].key}
           className="max-w-xs"
           value={count}
-          onChange={(e) => setCount(e.target.value)}
         >
           {personData.map((person) => (
             <SelectItem
-              textValue={person.key}
               key={person.key}
               value={person.count}
+              onChange={() => setCount(person.count)}
             >
               {person.count}
             </SelectItem>
           ))}
         </Select>
-        <p>Haz seleccionado reservación para </p>
-        {count}
       </CardBody>
     </Card>
   );
