@@ -1,4 +1,4 @@
-import { Tabs, Tab, Link } from '@nextui-org/react';
+import { Tabs, Tab, Link, Button } from '@nextui-org/react';
 import { useState } from 'react';
 import { ReservationDate } from './ReservationDate';
 import { ReservationCountPerson } from './ReservationCountPerson';
@@ -36,13 +36,14 @@ export const ReservationSteps = () => {
             selectedDate={selectedDate}
             setSelectedDate={setSelectedDate}
           />
-          <Link
-            className="mt-2"
-            size="sm"
+
+          <Button
+            className="mt-2 p-4 h-10 bg-success-200 font-semibold"
+            size="md"
             onPress={() => setSelectedTab('step2')}
           >
-            Elegir Dia
-          </Link>
+            Siguiente paso
+          </Button>
         </Tab>
 
         <Tab key="step2" title="Horarios y Detalles">
@@ -60,9 +61,25 @@ export const ReservationSteps = () => {
             selectedCountPerson={selectedCountPerson}
             setSelectedCountPerson={setSelectedCountPerson}
           />
+
+          <Button
+            className="mt-2 p-4 h-10 bg-success-200 text-slate-600 font-semibold"
+            size="md"
+            onPress={() => setSelectedTab('step3')}
+          >
+            Siguiente paso
+          </Button>
         </Tab>
 
-        <Tab key="step3" title="Confirmar" />
+        <Tab key="step3" title="Confirmar">
+          <Button
+            className="mt-2 p-4 h-10 bg-success-200 text-slate-600 font-semibold"
+            size="md"
+            onPress={() => setSelectedTab('step3')}
+          >
+            Confirmar Reserva
+          </Button>
+        </Tab>
       </Tabs>
     </>
   );

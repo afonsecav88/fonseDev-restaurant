@@ -20,10 +20,10 @@ export const ReservationDate = ({
     footer = (
       <>
         <Divider className="mt-3" orientation="horizontal" />
-        <p className="text-center mt-4  font-semibold text-green-400">
+        <p className="text-center mt-4 font-mono  text-green-400">
           Que día desea reservar ? <br />{' '}
         </p>
-        <p className="text-center mt-4  font-semibold text-red-400">
+        <p className="text-center mt-4  text-red-400">
           Debe ser posterior a : <br /> {format(currentDate, 'PP')}.
         </p>
       </>
@@ -32,7 +32,7 @@ export const ReservationDate = ({
     footer = (
       <>
         <Divider className="mt-3" orientation="horizontal" />
-        <p className="text-center mt-4 font-semibold text-green-500 ">
+        <p className="text-center mt-4 font-mono text-green-500 ">
           Has seleccionado este día: <br /> {format(selectedDate, 'PP')}.
         </p>
       </>
