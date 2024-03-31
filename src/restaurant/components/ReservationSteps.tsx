@@ -19,10 +19,6 @@ export const ReservationSteps = () => {
 
   const dayOfWeek = useGetDayOfWeek(selectedDate);
 
-  if (dayOfWeek == undefined) {
-    return;
-  }
-
   return (
     <>
       <p className="text-center mb-4 font-semibold text-blue-400">

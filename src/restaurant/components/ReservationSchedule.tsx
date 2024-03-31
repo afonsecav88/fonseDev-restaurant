@@ -4,7 +4,7 @@ import { scheduleData, scheduleDataW } from '../shared/mocks/scheduleData';
 interface ReservationCountPersonProps {
   selectedSchedule: string | number;
   setSelectedSchedule: React.Dispatch<React.SetStateAction<string | number>>;
-  dayOfWeek: number;
+  dayOfWeek?: number;
 }
 
 export const ReservationSchedule = ({

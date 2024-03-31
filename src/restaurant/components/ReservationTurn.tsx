@@ -4,7 +4,7 @@ import { turnFoodsData, turnFoodsDataW } from '../shared/mocks/turnsFoodsData';
 interface ReservationCountPersonProps {
   selectedTurn: string | number;
   setSelectedTurn: React.Dispatch<React.SetStateAction<string | number>>;
-  dayOfWeek: number;
+  dayOfWeek?: number;
 }
 
 export const ReservationTurn = ({
