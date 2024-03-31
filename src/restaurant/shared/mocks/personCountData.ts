@@ -1,16 +1,16 @@
 import { PersonCount } from '../models/reservationData';
 
 export const personCountData: PersonCount[] = [
-  { key: '1', count: 1 },
-  { key: '2', count: 2 },
-  { key: '3', count: 3 },
-  { key: '4', count: 4 },
-  { key: '5', count: 5 },
-  { key: '6', count: 6 },
-  { key: '7', count: 7 },
-  { key: '8', count: 8 },
-  { key: '1', count: 9 },
-  { key: '10', count: 10 },
-  { key: '11', count: 11 },
-  { key: '12', count: 12 },
+  { id: '1as55', value: 1 },
+  { id: '2sdsd55', value: 2 },
+  { id: 'sdsdd55', value: 3 },
+  { id: 'sdsd54', value: 4 },
+  { id: '5sdsds441s', value: 5 },
+  { id: '6sddsds', value: 6 },
+  { id: '7sdsd', value: 7 },
+  { id: 'sdsdsd8', value: 8 },
+  { id: '1sdsd', value: 9 },
+  { id: '10sdadsd', value: 10 },
+  { id: '11sdsd', value: 11 },
+  { id: '12sdsd', value: 12 },
 ];

@@ -1,6 +1,6 @@
 export interface PersonCount {
-  key: string;
-  count: number;
+  id: string;
+  value: number;
 }
 
 export interface Schedule {
