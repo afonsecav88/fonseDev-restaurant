@@ -132,7 +132,7 @@ export const HomePage = () => {
               <li>Almuerzo: 12:00 p.m. - 3:00 p.m.</li>
               <li>Cena: 6:00 p.m. - 11:00 p.m.</li>
               <p className="font-bold mt-5">Domingo:</p>
-              <li> Brunch: 9:00 a.m. - 2:00 p.m.</li>
+              <li> Desayuno: 9:00 a.m. - 2:00 p.m.</li>
               <li> Cena: 5:00 p.m. - 9:00 p.m.</li>
             </ul>
           </section>

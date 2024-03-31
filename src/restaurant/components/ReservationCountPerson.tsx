@@ -15,10 +15,10 @@ export const ReservationCountPerson = ({
   };
 
   return (
-    <Card className="w-72">
+    <Card className="w-72 my-2">
       <CardBody>
         <div className="flex w-full max-w-xs flex-col gap-2">
-          <p className="py-3 font-semibold text-green-500">
+          <p className="py-3 font-semibold text-sm text-green-400">
             Cantidad de personas:
           </p>
           <Select

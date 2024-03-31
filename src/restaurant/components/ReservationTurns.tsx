@@ -1,12 +1,12 @@
 import { Card, CardBody, Select, SelectItem } from '@nextui-org/react';
-import { personCountData } from '../shared/mocks/personCountData';
+import { turnFoods } from '../shared/mocks/turnsFoods';
 
 interface ReservationCountPersonProps {
   type: string | number;
   setType: React.Dispatch<React.SetStateAction<string | number>>;
 }
 
-export const ReservationType = ({
+export const ReservationTurns = ({
   type,
   setType,
 }: ReservationCountPersonProps) => {
@@ -18,24 +18,24 @@ export const ReservationType = ({
     <Card className="w-72">
       <CardBody>
         <div className="flex w-full max-w-xs flex-col gap-2">
-          <p className="py-3 font-semibold text-green-500">
-            Cantidad de personas:
+          <p className="py-3 font-semibold text-sm text-green-400">
+            Seleccione turno:
           </p>
           <Select
-            label="Seleccione cantidad :"
+            label="Turnos :"
             variant="bordered"
             placeholder="Seleccione"
             selectedKeys={[type]}
             className="max-w-xs"
             onChange={handleSelectionChange}
           >
-            {personCountData.map((person) => (
+            {turnFoods.map((turn) => (
               <SelectItem
-                key={person.value}
-                textValue={person.value.toString()}
-                value={person.value}
+                key={turn.typeFood}
+                textValue={turn.typeFood.toString()}
+                value={turn.typeFood}
               >
-                {person.value}
+                {turn.typeFood}
               </SelectItem>
             ))}
           </Select>
