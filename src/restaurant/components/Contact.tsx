@@ -123,7 +123,6 @@ export const Contact = () => {
         </Button>
       </form>
       <ContactDetails />
-      {/* {import.meta.env.VITE_SECRET} */}
     </div>
   );
 };

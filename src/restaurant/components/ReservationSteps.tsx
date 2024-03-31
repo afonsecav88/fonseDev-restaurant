@@ -2,17 +2,19 @@ import { Tabs, Tab, Link } from '@nextui-org/react';
 import { useState } from 'react';
 import { ReservationDate } from './ReservationDate';
 import { ReservationCountPerson } from './ReservationCountPerson';
-import { ReservationTurns } from './ReservationTurns';
+import { ReservationTurn } from './ReservationTurn';
+import { ReservationSchedule } from './ReservationSchedule';
 
 export const ReservationSteps = () => {
   const [selectedTab, setSelectedTab] = useState<string | number>('step1');
   const [selectedDate, setSelectedDate] = useState<Date | undefined>(
     new Date()
   );
-  const [selectCountPerson, setSelectCountPerson] = useState<string | number>(
-    0
-  );
-  const [type, setType] = useState<string | number>(0);
+  const [selectedCountPerson, setSelectedCountPerson] = useState<
+    string | number
+  >(0);
+  const [selectedTurn, setSelectedTurn] = useState<string | number>(0);
+  const [selectedSchedule, setSelectedSchedule] = useState<string | number>(0);
 
   return (
     <>
@@ -41,10 +43,17 @@ export const ReservationSteps = () => {
         </Tab>
 
         <Tab key="step2" title="Horarios y Detalles">
-          <ReservationTurns type={type} setType={setType} />
+          <ReservationTurn
+            selectedTurn={selectedTurn}
+            setSelectedTurn={setSelectedTurn}
+          />
+          <ReservationSchedule
+            selectedSchedule={selectedSchedule}
+            setSelectedSchedule={setSelectedSchedule}
+          />
           <ReservationCountPerson
-            selectCountPerson={selectCountPerson}
-            setSelectCountPerson={setSelectCountPerson}
+            selectedCountPerson={selectedCountPerson}
+            setSelectedCountPerson={setSelectedCountPerson}
           />
         </Tab>
 

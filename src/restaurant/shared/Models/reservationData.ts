@@ -6,12 +6,11 @@ export interface PersonCount {
 export interface Turns {
   id: string;
   typeFood: TypeFood;
-  schedule: Schedule;
 }
 
-export interface Hours {
+export interface ScheduleHours {
   id: string;
-  hour: string;
+  schedule: Schedule;
 }
 
 export enum TypeFood {

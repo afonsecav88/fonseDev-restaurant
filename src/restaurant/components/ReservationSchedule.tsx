@@ -1,31 +1,31 @@
 import { Card, CardBody, Select, SelectItem } from '@nextui-org/react';
-import { turnFoods } from '../shared/mocks/turnsFoods';
+import { turnFoods } from '../shared/mocks/turnsFoodsData';
 
 interface ReservationCountPersonProps {
-  type: string | number;
-  setType: React.Dispatch<React.SetStateAction<string | number>>;
+  selectedSchedule: string | number;
+  setSelectedSchedule: React.Dispatch<React.SetStateAction<string | number>>;
 }
 
-export const ReservationTurns = ({
-  type,
-  setType,
+export const ReservationSchedule = ({
+  selectedSchedule,
+  setSelectedSchedule,
 }: ReservationCountPersonProps) => {
   const handleSelectionChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setType(e.target.value);
+    setSelectedSchedule(e.target.value);
   };
 
   return (
-    <Card className="w-72">
+    <Card className="w-72 my-3">
       <CardBody>
         <div className="flex w-full max-w-xs flex-col gap-2">
           <p className="py-3 font-semibold text-sm text-green-400">
-            Seleccione turno:
+            Seleccione Hora:
           </p>
           <Select
             label="Turnos :"
             variant="bordered"
             placeholder="Seleccione"
-            selectedKeys={[type]}
+            selectedKeys={[selectedSchedule]}
             className="max-w-xs"
             onChange={handleSelectionChange}
           >
@@ -40,7 +40,7 @@ export const ReservationTurns = ({
             ))}
           </Select>
           <p className="text-small text-default-500 font-semibold my-3">
-            Reserva para: {type.toString()}
+            Reserva para: {selectedSchedule.toString()}
           </p>
         </div>
       </CardBody>
