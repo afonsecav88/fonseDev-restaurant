@@ -4,6 +4,7 @@ import { ReservationDate } from './ReservationDate';
 import { ReservationCountPerson } from './ReservationCountPerson';
 import { ReservationTurn } from './ReservationTurn';
 import { ReservationSchedule } from './ReservationSchedule';
+import { useGetDayOfWeek } from '../hooks/useGetDayOfWeek';
 
 export const ReservationSteps = () => {
   const [selectedTab, setSelectedTab] = useState<string | number>('step1');
@@ -15,6 +16,12 @@ export const ReservationSteps = () => {
   >(0);
   const [selectedTurn, setSelectedTurn] = useState<string | number>(0);
   const [selectedSchedule, setSelectedSchedule] = useState<string | number>(0);
+
+  const dayOfWeek = useGetDayOfWeek(selectedDate);
+
+  if (dayOfWeek == undefined) {
+    return;
+  }
 
   return (
     <>
@@ -46,10 +53,12 @@ export const ReservationSteps = () => {
           <ReservationTurn
             selectedTurn={selectedTurn}
             setSelectedTurn={setSelectedTurn}
+            dayOfWeek={dayOfWeek}
           />
           <ReservationSchedule
             selectedSchedule={selectedSchedule}
             setSelectedSchedule={setSelectedSchedule}
+            dayOfWeek={dayOfWeek}
           />
           <ReservationCountPerson
             selectedCountPerson={selectedCountPerson}

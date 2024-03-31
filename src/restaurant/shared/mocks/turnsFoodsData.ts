@@ -1,6 +1,6 @@
 import { Turns, TypeFood } from '../models/reservationData';
 
-export const turnFoods: Turns[] = [
+export const turnFoodsData: Turns[] = [
   {
     id: 'asds444',
     typeFood: TypeFood.Breakfast,
@@ -15,7 +15,7 @@ export const turnFoods: Turns[] = [
   },
 ];
 
-export const turnFoodsW: Turns[] = [
+export const turnFoodsDataW: Turns[] = [
   {
     id: 'asds4dsf44',
     typeFood: TypeFood.Breakfast,

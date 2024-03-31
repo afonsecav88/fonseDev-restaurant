@@ -1,17 +1,23 @@
 import { Card, CardBody, Select, SelectItem } from '@nextui-org/react';
-import { turnFoods } from '../shared/mocks/turnsFoodsData';
+import { turnFoodsData, turnFoodsDataW } from '../shared/mocks/turnsFoodsData';
 
 interface ReservationCountPersonProps {
   selectedTurn: string | number;
   setSelectedTurn: React.Dispatch<React.SetStateAction<string | number>>;
+  dayOfWeek: number;
 }
 
 export const ReservationTurn = ({
   selectedTurn,
-  setSelectedTurn: setType,
+  setSelectedTurn,
+  dayOfWeek,
 }: ReservationCountPersonProps) => {
   const handleSelectionChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setType(e.target.value);
+    setSelectedTurn(e.target.value);
+  };
+
+  const getTurnAccordingDay = () => {
+    return dayOfWeek == 0 || dayOfWeek == 1 ? turnFoodsDataW : turnFoodsData;
   };
 
   return (
@@ -29,7 +35,7 @@ export const ReservationTurn = ({
             className="max-w-xs"
             onChange={handleSelectionChange}
           >
-            {turnFoods.map((turn) => (
+            {getTurnAccordingDay().map((turn) => (
               <SelectItem
                 key={turn.typeFood}
                 textValue={turn.typeFood.toString()}

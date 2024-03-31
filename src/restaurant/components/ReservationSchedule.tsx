@@ -1,17 +1,23 @@
 import { Card, CardBody, Select, SelectItem } from '@nextui-org/react';
-import { turnFoods } from '../shared/mocks/turnsFoodsData';
+import { scheduleData, scheduleDataW } from '../shared/mocks/scheduleData';
 
 interface ReservationCountPersonProps {
   selectedSchedule: string | number;
   setSelectedSchedule: React.Dispatch<React.SetStateAction<string | number>>;
+  dayOfWeek: number;
 }
 
 export const ReservationSchedule = ({
   selectedSchedule,
   setSelectedSchedule,
+  dayOfWeek,
 }: ReservationCountPersonProps) => {
   const handleSelectionChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedSchedule(e.target.value);
+  };
+
+  const getScheduleAccordingDay = () => {
+    return dayOfWeek == 0 || dayOfWeek == 1 ? scheduleDataW : scheduleData;
   };
 
   return (
@@ -22,25 +28,25 @@ export const ReservationSchedule = ({
             Seleccione Hora:
           </p>
           <Select
-            label="Turnos :"
+            label="Horarios :"
             variant="bordered"
             placeholder="Seleccione"
             selectedKeys={[selectedSchedule]}
             className="max-w-xs"
             onChange={handleSelectionChange}
           >
-            {turnFoods.map((turn) => (
+            {getScheduleAccordingDay().map((schedule) => (
               <SelectItem
-                key={turn.typeFood}
-                textValue={turn.typeFood.toString()}
-                value={turn.typeFood}
+                key={schedule.schedule}
+                textValue={schedule.schedule}
+                value={schedule.schedule}
               >
-                {turn.typeFood}
+                {schedule.schedule}
               </SelectItem>
             ))}
           </Select>
           <p className="text-small text-default-500 font-semibold my-3">
-            Reserva para: {selectedSchedule.toString()}
+            Horario de : {selectedSchedule.toString()}
           </p>
         </div>
       </CardBody>
