@@ -1,10 +1,11 @@
-import { Tabs, Tab, Link, Button } from '@nextui-org/react';
+import { Tabs, Tab, Button } from '@nextui-org/react';
 import { useState } from 'react';
 import { ReservationDate } from './ReservationDate';
 import { ReservationCountPerson } from './ReservationCountPerson';
 import { ReservationTurn } from './ReservationTurn';
 import { ReservationSchedule } from './ReservationSchedule';
 import { useGetDayOfWeek } from '../hooks/useGetDayOfWeek';
+import { ReservationDetails } from './ReservationDetails';
 
 export const ReservationSteps = () => {
   const [selectedTab, setSelectedTab] = useState<string | number>('step1');
@@ -20,11 +21,13 @@ export const ReservationSteps = () => {
   const dayOfWeek = useGetDayOfWeek(selectedDate);
 
   return (
-    <>
-      <p className="text-center mb-4 font-semibold text-blue-400">
+    <div className="flex flex-col items-center pl-8">
+      <p className="text-center mb-2 font-semibold text-blue-400">
         Etapas de la reservación
       </p>
+
       <Tabs
+        className="py-5"
         selectedKey={selectedTab}
         onSelectionChange={setSelectedTab}
         color="success"
@@ -46,21 +49,28 @@ export const ReservationSteps = () => {
           </Button>
         </Tab>
 
-        <Tab key="step2" title="Horarios y Detalles">
-          <ReservationTurn
-            selectedTurn={selectedTurn}
-            setSelectedTurn={setSelectedTurn}
-            dayOfWeek={dayOfWeek}
-          />
-          <ReservationSchedule
-            selectedSchedule={selectedSchedule}
-            setSelectedSchedule={setSelectedSchedule}
-            dayOfWeek={dayOfWeek}
-          />
-          <ReservationCountPerson
-            selectedCountPerson={selectedCountPerson}
-            setSelectedCountPerson={setSelectedCountPerson}
-          />
+        <Tab
+          className="flex flex-col  sm:flex-row"
+          key="step2"
+          title="Horarios y Detalles"
+        >
+          <div className="flex flex-col">
+            <ReservationTurn
+              selectedTurn={selectedTurn}
+              setSelectedTurn={setSelectedTurn}
+              dayOfWeek={dayOfWeek}
+            />
+            <ReservationSchedule
+              selectedSchedule={selectedSchedule}
+              setSelectedSchedule={setSelectedSchedule}
+              dayOfWeek={dayOfWeek}
+            />
+            <ReservationCountPerson
+              selectedCountPerson={selectedCountPerson}
+              setSelectedCountPerson={setSelectedCountPerson}
+            />
+          </div>
+          <ReservationDetails />
 
           <Button
             className="mt-2 p-4 h-10 bg-success-200 text-slate-600 font-semibold"
@@ -81,6 +91,6 @@ export const ReservationSteps = () => {
           </Button>
         </Tab>
       </Tabs>
-    </>
+    </div>
   );
 };
