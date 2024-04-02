@@ -26,6 +26,7 @@ export const ReservationSteps = () => {
   });
 
   const dayOfWeek = useGetDayOfWeek(selectedDate);
+  const currentDate = new Date();
 
   return (
     <div className="flex flex-col items-center pl-8">
@@ -50,7 +51,7 @@ export const ReservationSteps = () => {
           <Button
             className="mt-2 p-4 h-10 bg-success-200 font-semibold"
             size="md"
-            isDisabled={selectedDate?.getDate() !== new Date().getDay()}
+            isDisabled={selectedDate && currentDate > selectedDate}
             onPress={() => setSelectedTab('step2')}
           >
             Siguiente paso
