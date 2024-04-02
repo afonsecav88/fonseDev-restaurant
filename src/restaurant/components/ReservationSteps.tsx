@@ -1,5 +1,5 @@
 import { Tabs, Tab, Button } from '@nextui-org/react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ReservationDate } from './ReservationDate';
 import { ReservationCountPerson } from './ReservationCountPerson';
 import { ReservationTurn } from './ReservationTurn';
@@ -7,6 +7,8 @@ import { ReservationSchedule } from './ReservationSchedule';
 import { useGetDayOfWeek } from '../hooks/useGetDayOfWeek';
 import { ReservationDetails } from './ReservationDetails';
 import { ContactData } from '../shared/models/contactData';
+import { useValidateReservationDate } from '../hooks/useValidateReservationDate';
+import { useValidateReservationDetails } from '../hooks/useValidateReservationDetails';
 
 export const ReservationSteps = () => {
   const [selectedTab, setSelectedTab] = useState<string | number>('step1');
@@ -24,10 +26,31 @@ export const ReservationSteps = () => {
     phone: '',
     message: '',
   });
+  const [isValidateReservationDetails, setIsValidateReservationDetails] =
+    useState(false);
 
   const dayOfWeek = useGetDayOfWeek(selectedDate);
-  const currentDate = new Date();
+  const validateDate = useValidateReservationDate(selectedDate);
 
+  const validateReservationDetails = useValidateReservationDetails(
+    selectedCountPerson,
+    selectedSchedule,
+    selectedTurn
+  );
+
+  useEffect(() => {
+    setIsValidateReservationDetails(validateReservationDetails);
+  }, [
+    selectedCountPerson,
+    selectedSchedule,
+    selectedTurn,
+    validateReservationDetails,
+  ]);
+
+  console.log(
+    'validateReservationDetails en ReservationSteps',
+    validateReservationDetails
+  );
   return (
     <div className="flex flex-col items-center pl-8">
       <p className="text-center mb-2 font-semibold text-blue-400">
@@ -41,6 +64,7 @@ export const ReservationSteps = () => {
         color="success"
         aria-label="Tabs steps"
         radius="full"
+        // isDisabled={true}
       >
         <Tab key="step1" title="Fecha">
           <ReservationDate
@@ -51,7 +75,7 @@ export const ReservationSteps = () => {
           <Button
             className="mt-2 p-4 h-10 bg-success-200 font-semibold"
             size="md"
-            isDisabled={selectedDate && currentDate > selectedDate}
+            isDisabled={validateDate}
             onPress={() => setSelectedTab('step2')}
           >
             Siguiente paso
@@ -59,7 +83,7 @@ export const ReservationSteps = () => {
         </Tab>
 
         <Tab
-          className="flex flex-col  sm:flex-row"
+          className="flex flex-col  sm:flex-row text-red-500"
           key="step2"
           title="Horarios y Detalles"
         >
@@ -82,6 +106,7 @@ export const ReservationSteps = () => {
           <ReservationDetails
             setReservationDetails={setReservationDetails}
             setSelectedTab={setSelectedTab}
+            isValidateReservationDetails={isValidateReservationDetails}
           />
         </Tab>
 

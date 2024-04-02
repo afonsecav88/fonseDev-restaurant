@@ -9,11 +9,13 @@ import React, { Dispatch } from 'react';
 interface ReservationDetailsProps {
   setReservationDetails: Dispatch<React.SetStateAction<ContactData>>;
   setSelectedTab: Dispatch<React.SetStateAction<string | number>>;
+  isValidateReservationDetails: boolean;
 }
 
 export const ReservationDetails = ({
   setReservationDetails,
   setSelectedTab,
+  isValidateReservationDetails,
 }: ReservationDetailsProps) => {
   const { yupResolver, schemaValidator } = useContactFormValidator();
   const {
@@ -32,6 +34,10 @@ export const ReservationDetails = ({
     reset();
   };
 
+  console.log(
+    'validateReservationDetails en ReservationDetails',
+    isValidateReservationDetails
+  );
   return (
     <div className="flex flex-col sm:flex-row sm:justify-center pl-10">
       <form
@@ -125,7 +131,7 @@ export const ReservationDetails = ({
         <Button
           color="success"
           variant="solid"
-          isDisabled={!isValid}
+          isDisabled={!isValid && isValidateReservationDetails}
           id="send-message"
           type="submit"
           className="text-white font-semibold "
