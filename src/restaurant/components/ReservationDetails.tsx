@@ -3,9 +3,18 @@ import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { Button, Input, Textarea } from '@nextui-org/react';
 import { useContactFormValidator } from '../hooks/useContactFormValidator';
 import { ContactData } from '../shared/models/contactData';
-import { UseSendEmail } from '../hooks/useSendEmail';
+import React, { Dispatch } from 'react';
+// import { UseSendEmail } from '../hooks/useSendEmail';
 
-export const ReservationDetails = () => {
+interface ReservationDetailsProps {
+  setReservationDetails: Dispatch<React.SetStateAction<ContactData>>;
+  setSelectedTab: Dispatch<React.SetStateAction<string | number>>;
+}
+
+export const ReservationDetails = ({
+  setReservationDetails,
+  setSelectedTab,
+}: ReservationDetailsProps) => {
   const { yupResolver, schemaValidator } = useContactFormValidator();
   const {
     control,
@@ -18,8 +27,8 @@ export const ReservationDetails = () => {
     mode: 'onTouched',
   });
 
-  const onSubmit: SubmitHandler<ContactData> = (data) => {
-    UseSendEmail(data);
+  const onSubmit: SubmitHandler<ContactData> = (data: ContactData) => {
+    setReservationDetails(data);
     reset();
   };
 
@@ -31,7 +40,7 @@ export const ReservationDetails = () => {
         className=" flex flex-col gap-5 pr-10 text-default-500 text-small mb-8 w-80"
       >
         <p className="text-sm">
-          Los datos serán usados para enviarle los detalles de la reservacón !
+          Los datos serán usados para enviarle los detalles de la reservación !
         </p>
 
         <Controller
@@ -40,7 +49,7 @@ export const ReservationDetails = () => {
           render={({ field: { onBlur, onChange, value } }) => (
             <Input
               value={value}
-              placeholder="nombre *"
+              placeholder="nombre y apellidos *"
               onChange={onChange}
               onBlur={onBlur}
               autoComplete="true"
@@ -100,7 +109,7 @@ export const ReservationDetails = () => {
               value={value}
               onChange={onChange}
               onBlur={onBlur}
-              label="Mensaje *"
+              label="Observaciones de su reserva *"
               id="message"
               autoComplete="true"
               name="message"
@@ -120,8 +129,9 @@ export const ReservationDetails = () => {
           id="send-message"
           type="submit"
           className="text-white font-semibold "
+          onPress={() => setSelectedTab('step3')}
         >
-          Enviar comentario
+          Siguiente paso
         </Button>
       </form>
     </div>

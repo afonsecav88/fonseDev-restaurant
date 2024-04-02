@@ -6,17 +6,24 @@ import { ReservationTurn } from './ReservationTurn';
 import { ReservationSchedule } from './ReservationSchedule';
 import { useGetDayOfWeek } from '../hooks/useGetDayOfWeek';
 import { ReservationDetails } from './ReservationDetails';
+import { ContactData } from '../shared/models/contactData';
 
 export const ReservationSteps = () => {
   const [selectedTab, setSelectedTab] = useState<string | number>('step1');
   const [selectedDate, setSelectedDate] = useState<Date | undefined>(
-    new Date()
+    new Date('2/1/22')
   );
   const [selectedCountPerson, setSelectedCountPerson] = useState<
     string | number
   >(0);
   const [selectedTurn, setSelectedTurn] = useState<string | number>(0);
   const [selectedSchedule, setSelectedSchedule] = useState<string | number>(0);
+  const [reservationDetails, setReservationDetails] = useState<ContactData>({
+    name: '',
+    email: '',
+    phone: '',
+    message: '',
+  });
 
   const dayOfWeek = useGetDayOfWeek(selectedDate);
 
@@ -43,6 +50,7 @@ export const ReservationSteps = () => {
           <Button
             className="mt-2 p-4 h-10 bg-success-200 font-semibold"
             size="md"
+            isDisabled={selectedDate?.getDate() !== new Date().getDay()}
             onPress={() => setSelectedTab('step2')}
           >
             Siguiente paso
@@ -70,15 +78,10 @@ export const ReservationSteps = () => {
               setSelectedCountPerson={setSelectedCountPerson}
             />
           </div>
-          <ReservationDetails />
-
-          <Button
-            className="mt-2 p-4 h-10 bg-success-200 text-slate-600 font-semibold"
-            size="md"
-            onPress={() => setSelectedTab('step3')}
-          >
-            Siguiente paso
-          </Button>
+          <ReservationDetails
+            setReservationDetails={setReservationDetails}
+            setSelectedTab={setSelectedTab}
+          />
         </Tab>
 
         <Tab key="step3" title="Confirmar">
