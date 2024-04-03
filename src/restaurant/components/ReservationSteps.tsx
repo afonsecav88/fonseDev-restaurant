@@ -1,31 +1,34 @@
 import { Tabs, Tab, Button } from '@nextui-org/react';
-import { useEffect, useState } from 'react';
-import { ReservationDate } from './ReservationDate';
-import { ReservationCountPerson } from './ReservationCountPerson';
-import { ReservationTurn } from './ReservationTurn';
-import { ReservationSchedule } from './ReservationSchedule';
-import { useGetDayOfWeek } from '../hooks/useGetDayOfWeek';
-import { ReservationDetails } from './ReservationDetails';
-import { ContactData } from '../shared/models/contactData';
-import { useValidateReservationDate } from '../hooks/useValidateReservationDate';
-import { useValidateReservationShedule } from '../hooks/useValidateReservationShedule';
+
+import {
+  ReservationDate,
+  ReservationCountPerson,
+  ReservationTurn,
+  ReservationSchedule,
+  ReservationDetails,
+} from './index';
+
+import {
+  useGetDayOfWeek,
+  useValidateReservationDate,
+  useValidateReservationShedule,
+  useReservationStepsStates,
+} from '../hooks/';
 
 export const ReservationSteps = () => {
-  const [selectedTab, setSelectedTab] = useState<string | number>('step1');
-  const [selectedDate, setSelectedDate] = useState<Date | undefined>(
-    new Date()
-  );
-  const [selectedCountPerson, setSelectedCountPerson] = useState<
-    string | number
-  >(0);
-  const [selectedTurn, setSelectedTurn] = useState<string | number>(0);
-  const [selectedSchedule, setSelectedSchedule] = useState<string | number>(0);
-  const [reservationDetails, setReservationDetails] = useState<ContactData>({
-    name: '',
-    email: '',
-    phone: '',
-    message: '',
-  });
+  const {
+    selectedTab,
+    setSelectedTab,
+    selectedDate,
+    setSelectedDate,
+    selectedCountPerson,
+    setSelectedCountPerson,
+    selectedTurn,
+    setSelectedTurn,
+    selectedSchedule,
+    setSelectedSchedule,
+    setReservationDetails,
+  } = useReservationStepsStates();
   const dayOfWeek = useGetDayOfWeek(selectedDate);
   const validateDate = useValidateReservationDate(selectedDate);
   const { isValidateReservationDetails } = useValidateReservationShedule(

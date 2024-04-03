@@ -1,9 +1,9 @@
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
-import { ContactDetails } from '../shared/pages/ContactDetails';
 import { Button, Input, Textarea } from '@nextui-org/react';
-import { useContactFormValidator } from '../hooks/useContactFormValidator';
 import { ContactData } from '../shared/models/contactData';
-import { UseSendEmail } from '../hooks/useSendEmail';
+import { ContactDetails } from '../shared/pages/ContactDetails';
+
+import { UseSendEmail, useContactFormValidator } from '../hooks/';
 
 export const Contact = () => {
   const { yupResolver, schemaValidator } = useContactFormValidator();
