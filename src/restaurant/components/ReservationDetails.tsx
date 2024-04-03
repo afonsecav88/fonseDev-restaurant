@@ -31,7 +31,7 @@ export const ReservationDetails = ({
 
   const onSubmit: SubmitHandler<ContactData> = (data: ContactData) => {
     setReservationDetails(data);
-    reset();
+    // reset();
   };
 
   console.log(

@@ -11,6 +11,7 @@ export const useContactFormValidator = () => {
     name: yup
       .string()
       .min(3, 'Al menos 3 caracteres.')
+      .max(40, 'Al menos 40 caracteres.')
       .required('Este campo es requerido.'),
     email: yup
       .string()
@@ -24,6 +25,7 @@ export const useContactFormValidator = () => {
     message: yup
       .string()
       .min(6, 'Al menos 6 caracters')
+      .max(80, 'Al menos 80 caracteres.')
       .required('Este campo es requerido'),
   });
   return {

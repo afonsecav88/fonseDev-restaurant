@@ -6,6 +6,7 @@ import {
   ReservationTurn,
   ReservationSchedule,
   ReservationDetails,
+  ReservationSummary,
 } from './index';
 
 import {
@@ -28,6 +29,7 @@ export const ReservationSteps = () => {
     selectedSchedule,
     setSelectedSchedule,
     setReservationDetails,
+    reservationDetails,
   } = useReservationStepsStates();
   const dayOfWeek = useGetDayOfWeek(selectedDate);
   const validateDate = useValidateReservationDate(selectedDate);
@@ -97,13 +99,13 @@ export const ReservationSteps = () => {
         </Tab>
 
         <Tab key="step3" title="Confirmar">
-          <Button
-            className="mt-2 p-4 h-10 bg-success-200 text-slate-600 font-semibold"
-            size="md"
-            onPress={() => setSelectedTab('step3')}
-          >
-            Confirmar Reserva
-          </Button>
+          <ReservationSummary
+            selectedTurn={selectedTurn}
+            selectedSchedule={selectedSchedule}
+            selectedCountPerson={selectedCountPerson}
+            selectedDate={selectedDate}
+            reservationDetails={reservationDetails}
+          />
         </Tab>
       </Tabs>
     </div>
