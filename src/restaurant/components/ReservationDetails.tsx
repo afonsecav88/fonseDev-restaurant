@@ -38,6 +38,9 @@ export const ReservationDetails = ({
     'validateReservationDetails en ReservationDetails',
     isValidateReservationDetails
   );
+
+  console.log('isValid en ReservationDetails', isValid);
+
   return (
     <div className="flex flex-col sm:flex-row sm:justify-center pl-10">
       <form
@@ -131,7 +134,7 @@ export const ReservationDetails = ({
         <Button
           color="success"
           variant="solid"
-          isDisabled={!isValid && isValidateReservationDetails}
+          isDisabled={(isValid && isValidateReservationDetails) == false}
           id="send-message"
           type="submit"
           className="text-white font-semibold "

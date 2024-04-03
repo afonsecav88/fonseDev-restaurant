@@ -47,10 +47,10 @@ export const ReservationSteps = () => {
     validateReservationDetails,
   ]);
 
-  console.log(
-    'validateReservationDetails en ReservationSteps',
-    validateReservationDetails
-  );
+  // console.log(
+  //   'validateReservationDetails en ReservationSteps',
+  //   validateReservationDetails
+  // );
   return (
     <div className="flex flex-col items-center pl-8">
       <p className="text-center mb-2 font-semibold text-blue-400">
