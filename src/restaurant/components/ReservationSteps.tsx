@@ -39,6 +39,8 @@ export const ReservationSteps = () => {
     selectedCountPerson
   );
 
+  console.log('reservationDetails:', reservationDetails);
+
   return (
     <div className="flex flex-col items-center pl-8">
       <p className="text-center mb-2 font-semibold text-blue-400">
@@ -92,6 +94,7 @@ export const ReservationSteps = () => {
             />
           </div>
           <ReservationDetails
+            reservationDetails={reservationDetails}
             setReservationDetails={setReservationDetails}
             setSelectedTab={setSelectedTab}
             isValidateReservationDetails={isValidateReservationDetails}

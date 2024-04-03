@@ -4,12 +4,14 @@ import { Button, Input, Textarea } from '@nextui-org/react';
 import { useContactFormValidator } from '../hooks/useContactFormValidator';
 import { ContactData } from '../shared/models/contactData';
 import React, { Dispatch } from 'react';
+import { UseReservationDetailsUpdate } from '../hooks/useReservationDetailsUpdate';
 // import { UseSendEmail } from '../hooks/useSendEmail';
 
 interface ReservationDetailsProps {
   setReservationDetails: Dispatch<React.SetStateAction<ContactData>>;
   setSelectedTab: Dispatch<React.SetStateAction<string | number>>;
   isValidateReservationDetails: boolean;
+  reservationDetails: ContactData;
 }
 
 export const ReservationDetails = ({
@@ -30,16 +32,14 @@ export const ReservationDetails = ({
   });
 
   const onSubmit: SubmitHandler<ContactData> = (data: ContactData) => {
-    setReservationDetails(data);
-    // reset();
+    const updateState = UseReservationDetailsUpdate(
+      data,
+      setReservationDetails
+    );
+    updateState;
+    // setReservationDetails(data); // reset();
+    // console.log('Reservation Details:', data);
   };
-
-  console.log(
-    'validateReservationDetails en ReservationDetails',
-    isValidateReservationDetails
-  );
-
-  console.log('isValid en ReservationDetails', isValid);
 
   return (
     <div className="flex flex-col sm:flex-row sm:justify-center pl-10">
