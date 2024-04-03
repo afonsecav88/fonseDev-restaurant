@@ -8,12 +8,12 @@ import { useGetDayOfWeek } from '../hooks/useGetDayOfWeek';
 import { ReservationDetails } from './ReservationDetails';
 import { ContactData } from '../shared/models/contactData';
 import { useValidateReservationDate } from '../hooks/useValidateReservationDate';
-import { useValidateReservationDetails } from '../hooks/useValidateReservationDetails';
+import { useValidateReservationShedule } from '../hooks/useValidateReservationShedule';
 
 export const ReservationSteps = () => {
   const [selectedTab, setSelectedTab] = useState<string | number>('step1');
   const [selectedDate, setSelectedDate] = useState<Date | undefined>(
-    new Date('2/1/22')
+    new Date()
   );
   const [selectedCountPerson, setSelectedCountPerson] = useState<
     string | number
@@ -26,31 +26,14 @@ export const ReservationSteps = () => {
     phone: '',
     message: '',
   });
-  const [isValidateReservationDetails, setIsValidateReservationDetails] =
-    useState(false);
-
   const dayOfWeek = useGetDayOfWeek(selectedDate);
   const validateDate = useValidateReservationDate(selectedDate);
-
-  const validateReservationDetails = useValidateReservationDetails(
-    selectedCountPerson,
+  const { isValidateReservationDetails } = useValidateReservationShedule(
+    selectedTurn,
     selectedSchedule,
-    selectedTurn
+    selectedCountPerson
   );
 
-  useEffect(() => {
-    setIsValidateReservationDetails(validateReservationDetails);
-  }, [
-    selectedCountPerson,
-    selectedSchedule,
-    selectedTurn,
-    validateReservationDetails,
-  ]);
-
-  // console.log(
-  //   'validateReservationDetails en ReservationSteps',
-  //   validateReservationDetails
-  // );
   return (
     <div className="flex flex-col items-center pl-8">
       <p className="text-center mb-2 font-semibold text-blue-400">
