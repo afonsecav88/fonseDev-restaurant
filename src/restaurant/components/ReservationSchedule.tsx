@@ -10,11 +10,12 @@ interface ReservationCountPersonProps {
 export const ReservationSchedule = ({
   selectedSchedule,
   setSelectedSchedule,
-  dayOfWeek,
-}: ReservationCountPersonProps) => {
+}: // dayOfWeek,
+ReservationCountPersonProps) => {
   const handleSelectionChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedSchedule(e.target.value);
   };
+  const dayOfWeek = 0;
 
   const getScheduleAccordingDay = () => {
     return dayOfWeek == 0 || dayOfWeek == 1 ? scheduleDataW : scheduleData;

@@ -2,21 +2,24 @@ import { format } from 'date-fns';
 import { DayPicker } from 'react-day-picker';
 import { es } from 'date-fns/locale';
 import { Card, CardBody, Divider } from '@nextui-org/react';
-import { Dispatch } from 'react';
+import { useReservationContext } from '../hooks/useReservationContext';
+import { useEffect, useState } from 'react';
+import { selectDate } from '../reducer/ReservationActions';
 
-interface ReservationDateProps {
-  selectedDate?: Date | undefined;
-  setSelectedDate: Dispatch<React.SetStateAction<Date | undefined>>;
-}
-
-export const ReservationDate = ({
-  selectedDate,
-  setSelectedDate,
-}: ReservationDateProps) => {
+export const ReservationDate = () => {
+  const [selected, setSelected] = useState<Date>(new Date());
+  const { initialState, dispatch } = useReservationContext();
+  const { selectedDate } = initialState;
   let footer = <></>;
 
+  useEffect(() => {
+    dispatch(selectDate(selected));
+  }, [dispatch, selected]);
+
+  console.log(selectedDate);
+
   const currentDate = new Date();
-  if (selectedDate && currentDate > selectedDate) {
+  if (selected && currentDate > selected) {
     footer = (
       <>
         <Divider className="mt-3" orientation="horizontal" />
@@ -33,12 +36,12 @@ export const ReservationDate = ({
       <>
         <Divider className="mt-3" orientation="horizontal" />
         <p className="text-center mt-4 font-mono text-green-500 ">
-          Has seleccionado este día: <br /> {format(selectedDate, 'PP')}.
+          Has seleccionado este día: <br /> {format(selected, 'PP')}.
         </p>
       </>
     );
   }
-
+  console.log('date', selected);
   return (
     <Card>
       <CardBody>
@@ -47,8 +50,8 @@ export const ReservationDate = ({
         </p>
         <DayPicker
           mode="single"
-          selected={selectedDate}
-          onSelect={setSelectedDate}
+          selected={selected}
+          onSelect={setSelected}
           footer={footer}
           locale={es}
         />

@@ -10,11 +10,11 @@ interface ReservationCountPersonProps {
 export const ReservationTurn = ({
   selectedTurn,
   setSelectedTurn,
-  dayOfWeek,
 }: ReservationCountPersonProps) => {
   const handleSelectionChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedTurn(e.target.value);
   };
+  const dayOfWeek = 0;
 
   const getTurnAccordingDay = () => {
     return dayOfWeek == 0 || dayOfWeek == 1 ? turnFoodsDataW : turnFoodsData;

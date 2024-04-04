@@ -11,17 +11,17 @@ import {
 
 import {
   useGetDayOfWeek,
-  useValidateReservationDate,
   useValidateReservationShedule,
   useReservationStepsStates,
 } from '../hooks/';
+import { useReservationContext } from '../hooks/useReservationContext';
 
 export const ReservationSteps = () => {
   const {
     selectedTab,
     setSelectedTab,
-    selectedDate,
-    setSelectedDate,
+    // selectedDate,
+    // setSelectedDate,
     selectedCountPerson,
     setSelectedCountPerson,
     selectedTurn,
@@ -31,8 +31,15 @@ export const ReservationSteps = () => {
     setReservationDetails,
     reservationDetails,
   } = useReservationStepsStates();
-  const dayOfWeek = useGetDayOfWeek(selectedDate);
-  const validateDate = useValidateReservationDate(selectedDate);
+
+  const { initialState } = useReservationContext();
+  const { selectedDate } = initialState;
+
+  // const dayOfWeek = useGetDayOfWeek(selectedDate);
+  // const validateDate = useValidateReservationDate(selectedDate);
+
+  // console.log(dayOfWeek);
+
   const { isValidateReservationDetails } = useValidateReservationShedule(
     selectedTurn,
     selectedSchedule,
@@ -56,14 +63,14 @@ export const ReservationSteps = () => {
       >
         <Tab key="step1" title="Fecha">
           <ReservationDate
-            selectedDate={selectedDate}
-            setSelectedDate={setSelectedDate}
+          // selectedDate={selectedDate}
+          // setSelectedDate={setSelectedDate}
           />
 
           <Button
             className="mt-2 p-4 h-10 bg-success-200 font-semibold"
             size="md"
-            isDisabled={validateDate}
+            // isDisabled={validateDate}
             onPress={() => setSelectedTab('step2')}
           >
             Siguiente paso
@@ -79,12 +86,12 @@ export const ReservationSteps = () => {
             <ReservationTurn
               selectedTurn={selectedTurn}
               setSelectedTurn={setSelectedTurn}
-              dayOfWeek={dayOfWeek}
+              // dayOfWeek={dayOfWeek}
             />
             <ReservationSchedule
               selectedSchedule={selectedSchedule}
               setSelectedSchedule={setSelectedSchedule}
-              dayOfWeek={dayOfWeek}
+              // dayOfWeek={dayOfWeek}
             />
             <ReservationCountPerson
               selectedCountPerson={selectedCountPerson}
