@@ -1,11 +1,13 @@
+import { useReducer } from 'react';
 import { Schedule, TypeFood } from '../shared/models/reservationData';
 import { ReservationState } from '../shared/models/reservationState';
 import { ReservationContext } from './ReservationContext';
+import { ReservationReducer } from '../reducer/ReservationReducer';
 
 interface ReservationProviderProps {
   children: JSX.Element | JSX.Element[];
 }
-const initialState: ReservationState = {
+const initialStateReservation: ReservationState = {
   reservationDetails: { name: '', email: '', phone: '', message: '' },
   selectedTab: 'step1',
   selectedDate: new Date(),
@@ -15,8 +17,12 @@ const initialState: ReservationState = {
 };
 
 export const ReservationProvider = ({ children }: ReservationProviderProps) => {
+  const [initialState, dispatch] = useReducer(
+    ReservationReducer,
+    initialStateReservation
+  );
   return (
-    <ReservationContext.Provider value={initialState}>
+    <ReservationContext.Provider value={{ initialState, dispatch }}>
       {children}
     </ReservationContext.Provider>
   );
