@@ -1,18 +1,19 @@
 import { Card, CardBody, Select, SelectItem } from '@nextui-org/react';
 import { turnFoodsData, turnFoodsDataW } from '../mocks/turnsFoodsData';
+import { useReservationContext } from '../hooks/useReservationContext';
+import { selectTurn } from '../reducer/ReservationActions';
+import { useState } from 'react';
 
-interface ReservationCountPersonProps {
-  selectedTurn: string | number;
-  setSelectedTurn: React.Dispatch<React.SetStateAction<string | number>>;
-  dayOfWeek?: number;
-}
+export const ReservationTurn = () => {
+  const [turn, setTurn] = useState('');
+  const { initialState, dispatch } = useReservationContext();
+  const { selectedTurn } = initialState;
 
-export const ReservationTurn = ({
-  selectedTurn,
-  setSelectedTurn,
-}: ReservationCountPersonProps) => {
   const handleSelectionChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectedTurn(e.target.value);
+    if (e.target.value == turn) return;
+    setTurn(e.target.value);
+    dispatch(selectTurn(turn));
+    console.log('selectedTurn', selectedTurn);
   };
   const dayOfWeek = 0;
 
@@ -31,7 +32,7 @@ export const ReservationTurn = ({
             label="Turnos :"
             variant="bordered"
             placeholder="Seleccione"
-            selectedKeys={[selectedTurn]}
+            selectedKeys={[turn]}
             className="max-w-xs"
             onChange={handleSelectionChange}
           >
@@ -46,7 +47,7 @@ export const ReservationTurn = ({
             ))}
           </Select>
           <p className="text-small text-default-500 font-semibold my-3">
-            Reserva para: {selectedTurn.toString()}
+            Reserva para: {turn.toString()}
           </p>
         </div>
       </CardBody>

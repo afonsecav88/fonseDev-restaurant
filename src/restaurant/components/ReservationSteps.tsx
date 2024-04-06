@@ -2,9 +2,7 @@ import { Tabs, Tab } from '@nextui-org/react';
 
 import {
   ReservationDate,
-  ReservationCountPerson,
   ReservationTurn,
-  ReservationSchedule,
   ReservationDetails,
   ReservationSummary,
 } from './index';
@@ -20,9 +18,7 @@ export const ReservationSteps = () => {
   const {
     setSelectedTab,
     selectedCountPerson,
-    setSelectedCountPerson,
     selectedTurn,
-    setSelectedTurn,
     selectedSchedule,
     setReservationDetails,
     reservationDetails,
@@ -41,7 +37,6 @@ export const ReservationSteps = () => {
     dispatch(selectTab(selectedTab));
   };
 
-  console.log('selectedTab:', selectedTab);
   return (
     <div className="flex flex-col items-center pl-8">
       <p className="text-center mb-2 font-semibold text-blue-400">
@@ -66,15 +61,12 @@ export const ReservationSteps = () => {
           title="Horarios y Detalles"
         >
           <div className="flex flex-col">
-            <ReservationTurn
-              selectedTurn={selectedTurn}
-              setSelectedTurn={setSelectedTurn}
-            />
-            <ReservationSchedule />
+            <ReservationTurn />
+            {/* <ReservationSchedule />
             <ReservationCountPerson
               selectedCountPerson={selectedCountPerson}
               setSelectedCountPerson={setSelectedCountPerson}
-            />
+            /> */}
           </div>
           <ReservationDetails
             reservationDetails={reservationDetails}
