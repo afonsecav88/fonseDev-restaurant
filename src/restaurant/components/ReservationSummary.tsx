@@ -6,7 +6,7 @@ import {
   CardHeader,
   Divider,
 } from '@nextui-org/react';
-import { ContactData } from '../shared/models/contactData';
+import { ContactData } from '../models/contactData';
 import { format } from 'date-fns';
 
 interface ReservationSummaryProps {

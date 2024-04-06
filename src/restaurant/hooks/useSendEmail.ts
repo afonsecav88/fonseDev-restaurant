@@ -1,5 +1,5 @@
 import emailjs from '@emailjs/browser';
-import { ContactData } from '../shared/models/contactData';
+import { ContactData } from '../models/contactData';
 
 export const UseSendEmail = (bodyMail: ContactData) => {
   emailjs.init(import.meta.env.VITE_EMAIL_USER_ID);

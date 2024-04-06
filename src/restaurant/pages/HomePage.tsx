@@ -1,5 +1,5 @@
-import { Header } from '../components/Header';
-import { ContactDetails } from './ContactDetails';
+import { Header } from '../layout/components/Header';
+import { ContactDetails } from '../components/ContactDetails';
 
 export const HomePage = () => {
   return (

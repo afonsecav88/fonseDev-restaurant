@@ -2,10 +2,13 @@ import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 
 import { Button, Input, Textarea } from '@nextui-org/react';
 import { useContactFormValidator } from '../hooks/useContactFormValidator';
-import { ContactData } from '../shared/models/contactData';
+import { ContactData } from '../models/contactData';
 import React, { Dispatch } from 'react';
-import { UseReservationDetailsUpdate } from '../hooks/useReservationDetailsUpdate';
-// import { UseSendEmail } from '../hooks/useSendEmail';
+import { useReservationContext } from '../hooks/useReservationContext';
+import {
+  getReservationDetails,
+  selectTab,
+} from '../reducer/ReservationActions';
 
 interface ReservationDetailsProps {
   setReservationDetails: Dispatch<React.SetStateAction<ContactData>>;
@@ -15,15 +18,15 @@ interface ReservationDetailsProps {
 }
 
 export const ReservationDetails = ({
-  setReservationDetails,
-  setSelectedTab,
+  // setReservationDetails,
+  // setSelectedTab,
   isValidateReservationDetails,
 }: ReservationDetailsProps) => {
   const { yupResolver, schemaValidator } = useContactFormValidator();
   const {
     control,
     handleSubmit,
-    reset,
+    // reset,
     formState: { isValid, errors },
   } = useForm({
     defaultValues: { name: '', email: '', phone: '', message: '' },
@@ -31,12 +34,15 @@ export const ReservationDetails = ({
     mode: 'onTouched',
   });
 
+  const { dispatch } = useReservationContext();
+
   const onSubmit: SubmitHandler<ContactData> = (data: ContactData) => {
-    const updateState = UseReservationDetailsUpdate(
-      data,
-      setReservationDetails
-    );
-    updateState;
+    dispatch(getReservationDetails(data));
+    // const updateState = UseReservationDetailsUpdate(
+    //   data,
+    //   setReservationDetails
+    // );
+    // updateState;
     // setReservationDetails(data); // reset();
     // console.log('Reservation Details:', data);
   };
@@ -138,7 +144,7 @@ export const ReservationDetails = ({
           id="send-message"
           type="submit"
           className="text-white font-semibold "
-          onPress={() => setSelectedTab('step3')}
+          onPress={() => dispatch(selectTab('step3'))}
         >
           Siguiente paso
         </Button>

@@ -1,4 +1,4 @@
-import { ReservationState } from '../shared/models/reservationState';
+import { ReservationState } from '../models/reservationState';
 import { ReservationActions } from './ReservationActions';
 
 export const ReservationReducer = (
@@ -6,6 +6,9 @@ export const ReservationReducer = (
   action: ReservationActions
 ): ReservationState => {
   switch (action.type) {
+    case 'Select Tab': {
+      return { ...state, selectedTab: action.payload };
+    }
     case 'Select Date': {
       return { ...state, selectedDate: action.payload };
     }

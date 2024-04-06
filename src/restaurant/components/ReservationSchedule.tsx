@@ -1,19 +1,20 @@
 import { Card, CardBody, Select, SelectItem } from '@nextui-org/react';
-import { scheduleData, scheduleDataW } from '../shared/mocks/scheduleData';
+import { scheduleData, scheduleDataW } from '../mocks/scheduleData';
+import { useReservationContext } from '../hooks/useReservationContext';
+import { selectSchedule } from '../reducer/ReservationActions';
 
-interface ReservationCountPersonProps {
-  selectedSchedule: string | number;
-  setSelectedSchedule: React.Dispatch<React.SetStateAction<string | number>>;
-  dayOfWeek?: number;
-}
+// interface ReservationCountPersonProps {
+//   selectedSchedule: string | number;
+//   setSelectedSchedule: React.Dispatch<React.SetStateAction<string | number>>;
+//   dayOfWeek?: number;
+// }
 
-export const ReservationSchedule = ({
-  selectedSchedule,
-  setSelectedSchedule,
-}: // dayOfWeek,
-ReservationCountPersonProps) => {
+export const ReservationSchedule = () => {
+  const { initialState, dispatch } = useReservationContext();
+  const { selectedSchedule } = initialState;
+
   const handleSelectionChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectedSchedule(e.target.value);
+    dispatch(selectSchedule(e.target.value));
   };
   const dayOfWeek = 0;
 

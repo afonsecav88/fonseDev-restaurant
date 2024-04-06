@@ -1,4 +1,4 @@
-import { Tabs, Tab, Button } from '@nextui-org/react';
+import { Tabs, Tab } from '@nextui-org/react';
 
 import {
   ReservationDate,
@@ -10,35 +10,45 @@ import {
 } from './index';
 
 import {
-  useGetDayOfWeek,
   useValidateReservationShedule,
   useReservationStepsStates,
 } from '../hooks/';
 import { useReservationContext } from '../hooks/useReservationContext';
+import { selectTab } from '../reducer/ReservationActions';
 
 export const ReservationSteps = () => {
   const {
-    selectedTab,
-    setSelectedTab,
     // selectedDate,
     // setSelectedDate,
+    // selectedTab,
+    setSelectedTab,
     selectedCountPerson,
     setSelectedCountPerson,
     selectedTurn,
     setSelectedTurn,
     selectedSchedule,
-    setSelectedSchedule,
+    // setSelectedSchedule,
     setReservationDetails,
     reservationDetails,
   } = useReservationStepsStates();
 
-  const { initialState } = useReservationContext();
-  const { selectedDate } = initialState;
+  const { initialState, dispatch } = useReservationContext();
+  const { selectedDate, selectedTab } = initialState;
+
+  // useEffect(() => {
+  //   dispatch(selectTab(tab));
+  // }, [dispatch, tab]);
 
   // const dayOfWeek = useGetDayOfWeek(selectedDate);
   // const validateDate = useValidateReservationDate(selectedDate);
 
   // console.log(dayOfWeek);
+
+  // const handleChangeTab = useCallback(() => {
+  //   dispatch(selectTab(tab));
+  // }, [dispatch, tab]);
+
+  // console.log('selectedTab', selectedTab);
 
   const { isValidateReservationDetails } = useValidateReservationShedule(
     selectedTurn,
@@ -46,6 +56,11 @@ export const ReservationSteps = () => {
     selectedCountPerson
   );
 
+  const handleOnSelectionChange = () => {
+    dispatch(selectTab(selectedTab));
+  };
+
+  console.log('selectedTab:', selectedTab);
   return (
     <div className="flex flex-col items-center pl-8">
       <p className="text-center mb-2 font-semibold text-blue-400">
@@ -54,8 +69,10 @@ export const ReservationSteps = () => {
 
       <Tabs
         className="py-5"
+        // selectedKey={selectedTab}
+        // onSelectionChange={setSelectedTab}
         selectedKey={selectedTab}
-        onSelectionChange={setSelectedTab}
+        onSelectionChange={handleOnSelectionChange}
         color="success"
         aria-label="Tabs steps"
         radius="full"
@@ -67,14 +84,14 @@ export const ReservationSteps = () => {
           // setSelectedDate={setSelectedDate}
           />
 
-          <Button
+          {/* <Button
             className="mt-2 p-4 h-10 bg-success-200 font-semibold"
             size="md"
             // isDisabled={validateDate}
-            onPress={() => setSelectedTab('step2')}
+            onPress={() => dispatch(selectTab('step2'))}
           >
             Siguiente paso
-          </Button>
+          </Button> */}
         </Tab>
 
         <Tab
@@ -89,9 +106,9 @@ export const ReservationSteps = () => {
               // dayOfWeek={dayOfWeek}
             />
             <ReservationSchedule
-              selectedSchedule={selectedSchedule}
-              setSelectedSchedule={setSelectedSchedule}
-              // dayOfWeek={dayOfWeek}
+            // selectedSchedule={selectedSchedule}
+            // setSelectedSchedule={setSelectedSchedule}
+            // dayOfWeek={dayOfWeek}
             />
             <ReservationCountPerson
               selectedCountPerson={selectedCountPerson}

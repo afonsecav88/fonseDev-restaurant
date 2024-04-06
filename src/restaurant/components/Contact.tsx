@@ -1,7 +1,8 @@
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { Button, Input, Textarea } from '@nextui-org/react';
-import { ContactData } from '../shared/models/contactData';
-import { ContactDetails } from '../shared/pages/ContactDetails';
+import { ContactData } from '../models/contactData';
+import { ContactDetails } from './ContactDetails';
+import { DevTool } from '@hookform/devtools';
 
 import { UseSendEmail, useContactFormValidator } from '../hooks/';
 
@@ -123,6 +124,7 @@ export const Contact = () => {
         </Button>
       </form>
       <ContactDetails />
+      <DevTool control={control} /> {/* set up the dev tool */}
     </div>
   );
 };

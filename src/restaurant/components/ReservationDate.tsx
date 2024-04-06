@@ -1,22 +1,23 @@
 import { format } from 'date-fns';
 import { DayPicker } from 'react-day-picker';
 import { es } from 'date-fns/locale';
-import { Card, CardBody, Divider } from '@nextui-org/react';
+import { Button, Card, CardBody, Divider } from '@nextui-org/react';
 import { useReservationContext } from '../hooks/useReservationContext';
-import { useEffect, useState } from 'react';
-import { selectDate } from '../reducer/ReservationActions';
+import { useState } from 'react';
+import { selectTab } from '../reducer/ReservationActions';
+// import { useReservationStepsStates } from '../hooks';
 
 export const ReservationDate = () => {
   const [selected, setSelected] = useState<Date>(new Date());
-  const { initialState, dispatch } = useReservationContext();
-  const { selectedDate } = initialState;
+  const { dispatch } = useReservationContext();
+
+  // const { selectedTab, setSelectedTab } = useReservationStepsStates();
+
   let footer = <></>;
 
-  useEffect(() => {
-    dispatch(selectDate(selected));
-  }, [dispatch, selected]);
-
-  console.log(selectedDate);
+  // useEffect(() => {
+  //   dispatch(selectDate(selected));
+  // }, [dispatch, selected]);
 
   const currentDate = new Date();
   if (selected && currentDate > selected) {
@@ -41,7 +42,7 @@ export const ReservationDate = () => {
       </>
     );
   }
-  console.log('date', selected);
+
   return (
     <Card>
       <CardBody>
@@ -55,6 +56,14 @@ export const ReservationDate = () => {
           footer={footer}
           locale={es}
         />
+        <Button
+          className="mt-2 p-4 h-10 bg-success-200 font-semibold"
+          size="md"
+          // isDisabled={validateDate}
+          onPress={() => dispatch(selectTab('step2'))}
+        >
+          Siguiente paso
+        </Button>
       </CardBody>
     </Card>
   );

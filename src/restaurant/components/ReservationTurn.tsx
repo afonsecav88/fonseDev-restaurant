@@ -1,5 +1,5 @@
 import { Card, CardBody, Select, SelectItem } from '@nextui-org/react';
-import { turnFoodsData, turnFoodsDataW } from '../shared/mocks/turnsFoodsData';
+import { turnFoodsData, turnFoodsDataW } from '../mocks/turnsFoodsData';
 
 interface ReservationCountPersonProps {
   selectedTurn: string | number;

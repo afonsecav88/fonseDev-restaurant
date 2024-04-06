@@ -1,7 +1,7 @@
 import { createContext } from 'react';
 
 import { ReservationActions } from '../reducer/ReservationActions';
-import { ReservationState } from '../shared/models/reservationState';
+import { ReservationState } from '../models/reservationState';
 
 export type ReservationContextProps = {
   initialState: ReservationState;

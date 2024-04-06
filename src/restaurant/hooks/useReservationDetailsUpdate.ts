@@ -1,5 +1,5 @@
 import { Dispatch, useEffect } from 'react';
-import { ContactData } from '../shared/models/contactData';
+import { ContactData } from '../models/contactData';
 
 export const UseReservationDetailsUpdate = (
   data: ContactData,

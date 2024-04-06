@@ -1,5 +1,5 @@
 import { Card, CardBody, Select, SelectItem } from '@nextui-org/react';
-import { personCountData } from '../shared/mocks/personCountData';
+import { personCountData } from '../mocks/personCountData';
 
 interface ReservationCountPersonProps {
   selectedCountPerson: string | number;

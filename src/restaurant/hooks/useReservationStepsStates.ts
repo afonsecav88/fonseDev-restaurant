@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ContactData } from '../shared/models/contactData';
+import { ContactData } from '../models/contactData';
 
 export const useReservationStepsStates = () => {
   const [selectedTab, setSelectedTab] = useState<string | number>('step1');

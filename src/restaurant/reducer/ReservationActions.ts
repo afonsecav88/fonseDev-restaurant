@@ -1,11 +1,19 @@
-import { ContactData } from '../shared/models/contactData';
+import { ContactData } from '../models/contactData';
 
 export type ReservationActions =
+  | { type: 'Select Tab'; payload: string }
   | { type: 'Select Date'; payload: Date | undefined }
   | { type: 'Select turn'; payload: number | string }
   | { type: 'Select schedule'; payload: number | string }
   | { type: 'Select Count Persons'; payload: number | string }
   | { type: 'Get reservation Details'; payload: ContactData };
+
+export const selectTab = (payload: string): ReservationActions => {
+  return {
+    type: 'Select Tab',
+    payload,
+  };
+};
 
 export const selectDate = (payload: Date | undefined): ReservationActions => {
   return {
