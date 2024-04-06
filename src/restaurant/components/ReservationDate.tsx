@@ -5,29 +5,23 @@ import { Button, Card, CardBody, Divider } from '@nextui-org/react';
 import { useReservationContext } from '../hooks/useReservationContext';
 import { useState } from 'react';
 import { selectTab } from '../reducer/ReservationActions';
-// import { useReservationStepsStates } from '../hooks';
+import { useValidateReservationDate } from '../hooks';
 
 export const ReservationDate = () => {
   const [selected, setSelected] = useState<Date>(new Date());
   const { dispatch } = useReservationContext();
-
-  // const { selectedTab, setSelectedTab } = useReservationStepsStates();
-
+  const validateDate = useValidateReservationDate(selected);
   let footer = <></>;
-
-  // useEffect(() => {
-  //   dispatch(selectDate(selected));
-  // }, [dispatch, selected]);
 
   const currentDate = new Date();
   if (selected && currentDate > selected) {
     footer = (
       <>
         <Divider className="mt-3" orientation="horizontal" />
-        <p className="text-center mt-4 font-mono  text-green-400">
+        <p className="text-center mt-4 text-medium  text-green-400">
           Que día desea reservar ? <br />{' '}
         </p>
-        <p className="text-center mt-4  text-red-400">
+        <p className="text-center mt-4 text-medium  text-red-400">
           Debe ser posterior a : <br /> {format(currentDate, 'PP')}.
         </p>
       </>
@@ -36,7 +30,7 @@ export const ReservationDate = () => {
     footer = (
       <>
         <Divider className="mt-3" orientation="horizontal" />
-        <p className="text-center mt-4 font-mono text-green-500 ">
+        <p className="text-center mt-4 text-medium  text-green-500 ">
           Has seleccionado este día: <br /> {format(selected, 'PP')}.
         </p>
       </>
@@ -59,7 +53,10 @@ export const ReservationDate = () => {
         <Button
           className="mt-2 p-4 h-10 bg-success-200 font-semibold"
           size="md"
-          // isDisabled={validateDate}
+          isDisabled={validateDate}
+          endContent={
+            <img className="w-5" src="./arrow-next-right.svg" alt="icon-next" />
+          }
           onPress={() => dispatch(selectTab('step2'))}
         >
           Siguiente paso

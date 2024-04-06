@@ -143,10 +143,26 @@ export const ReservationDetails = ({
           isDisabled={(isValid && isValidateReservationDetails) == false}
           id="send-message"
           type="submit"
+          endContent={
+            <img className="w-5" src="./arrow-next-right.svg" alt="icon-next" />
+          }
           className="text-white font-semibold "
           onPress={() => dispatch(selectTab('step3'))}
         >
           Siguiente paso
+        </Button>
+        <Button
+          color="success"
+          variant="solid"
+          id="send-message"
+          type="submit"
+          startContent={
+            <img className="w-5" src="./arrow-next-left.svg" alt="icon-back" />
+          }
+          className="text-white font-semibold "
+          onPress={() => dispatch(selectTab('step1'))}
+        >
+          Paso Anterior
         </Button>
       </form>
     </div>
