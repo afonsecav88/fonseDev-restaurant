@@ -2,24 +2,20 @@ import { Card, CardBody, Select, SelectItem } from '@nextui-org/react';
 import { scheduleData, scheduleDataW } from '../mocks/scheduleData';
 import { useReservationContext } from '../hooks/useReservationContext';
 import { selectSchedule } from '../reducer/ReservationActions';
-
-// interface ReservationCountPersonProps {
-//   selectedSchedule: string | number;
-//   setSelectedSchedule: React.Dispatch<React.SetStateAction<string | number>>;
-//   dayOfWeek?: number;
-// }
+import { useState } from 'react';
 
 export const ReservationSchedule = () => {
+  const dayOfWeek = 0;
   const { initialState, dispatch } = useReservationContext();
   const { selectedSchedule } = initialState;
-
-  const handleSelectionChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    dispatch(selectSchedule(e.target.value));
-  };
-  const dayOfWeek = 0;
+  const [schedule, setSchedule] = useState<string | number>(selectedSchedule);
 
   const getScheduleAccordingDay = () => {
     return dayOfWeek == 0 || dayOfWeek == 1 ? scheduleDataW : scheduleData;
+  };
+  const handleSelectionChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setSchedule(e.target.value);
+    dispatch(selectSchedule(e.target.value));
   };
 
   return (
@@ -33,7 +29,7 @@ export const ReservationSchedule = () => {
             label="Horarios :"
             variant="bordered"
             placeholder="Seleccione"
-            selectedKeys={[selectedSchedule]}
+            selectedKeys={[schedule]}
             className="max-w-xs"
             onChange={handleSelectionChange}
           >

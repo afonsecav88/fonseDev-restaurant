@@ -8,16 +8,14 @@ import { selectDate, selectTab } from '../reducer/ReservationActions';
 import { useValidateReservationDate } from '../hooks';
 
 export const ReservationDate = () => {
-  const [selected, setSelected] = useState<Date>(new Date());
   const { initialState, dispatch } = useReservationContext();
-  const validateDate = useValidateReservationDate(selected);
   const { selectedDate } = initialState;
+  const [selected, setSelected] = useState<Date | undefined>(selectedDate);
+  const validateDate = useValidateReservationDate(selected);
 
   useEffect(() => {
     dispatch(selectDate(selected));
   }, [dispatch, selected]);
-
-  console.log('selectedDate', selectedDate);
 
   let footer = <></>;
 

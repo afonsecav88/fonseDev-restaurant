@@ -5,10 +5,12 @@ import {
   ReservationTurn,
   ReservationDetails,
   ReservationSummary,
+  ReservationSchedule,
+  ReservationCountPerson,
 } from './index';
 
 import {
-  useValidateReservationShedule,
+  // useValidateReservationShedule,
   useReservationStepsStates,
 } from '../hooks/';
 import { useReservationContext } from '../hooks/useReservationContext';
@@ -16,22 +18,20 @@ import { selectTab } from '../reducer/ReservationActions';
 
 export const ReservationSteps = () => {
   const {
-    setSelectedTab,
     selectedCountPerson,
     selectedTurn,
     selectedSchedule,
-    setReservationDetails,
     reservationDetails,
   } = useReservationStepsStates();
 
   const { initialState, dispatch } = useReservationContext();
   const { selectedDate, selectedTab } = initialState;
 
-  const { isValidateReservationDetails } = useValidateReservationShedule(
-    selectedTurn,
-    selectedSchedule,
-    selectedCountPerson
-  );
+  // const { isValidateReservationDetails } = useValidateReservationShedule(
+  //   selectedTurn,
+  //   selectedSchedule,
+  //   selectedCountPerson
+  // );
 
   const handleOnSelectionChange = () => {
     dispatch(selectTab(selectedTab));
@@ -62,18 +62,10 @@ export const ReservationSteps = () => {
         >
           <div className="flex flex-col">
             <ReservationTurn />
-            {/* <ReservationSchedule />
-            <ReservationCountPerson
-              selectedCountPerson={selectedCountPerson}
-              setSelectedCountPerson={setSelectedCountPerson}
-            /> */}
+            <ReservationSchedule />
+            <ReservationCountPerson />
           </div>
-          <ReservationDetails
-            reservationDetails={reservationDetails}
-            setReservationDetails={setReservationDetails}
-            setSelectedTab={setSelectedTab}
-            isValidateReservationDetails={isValidateReservationDetails}
-          />
+          <ReservationDetails />
         </Tab>
 
         <Tab key="step3" title="Confirmar">

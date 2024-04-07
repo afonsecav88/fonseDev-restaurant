@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 export const useValidateReservationShedule = (
   selectedTurn: string | number,
@@ -18,14 +18,7 @@ export const useValidateReservationShedule = (
       ? false
       : true;
 
-  useEffect(() => {
-    setIsValidateReservationDetails(validateReservationDetails);
-  }, [
-    selectedCountPerson,
-    selectedSchedule,
-    selectedTurn,
-    validateReservationDetails,
-  ]);
+  setIsValidateReservationDetails(validateReservationDetails);
 
   return {
     isValidateReservationDetails,

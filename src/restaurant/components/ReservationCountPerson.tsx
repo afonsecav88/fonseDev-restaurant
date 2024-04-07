@@ -1,18 +1,20 @@
 import { Card, CardBody, Select, SelectItem } from '@nextui-org/react';
 import { personCountData } from '../mocks/personCountData';
+import { useState } from 'react';
+import { useReservationContext } from '../hooks/useReservationContext';
+import { selectCountPerson } from '../reducer/ReservationActions';
 
-interface ReservationCountPersonProps {
-  selectedCountPerson: string | number;
-  setSelectedCountPerson: React.Dispatch<React.SetStateAction<string | number>>;
-}
+export const ReservationCountPerson = () => {
+  const { initialState, dispatch } = useReservationContext();
+  const { selectedCountPerson } = initialState;
+  const [personCount, setPersonCount] = useState(selectedCountPerson);
 
-export const ReservationCountPerson = ({
-  selectedCountPerson: value,
-  setSelectedCountPerson: setValue,
-}: ReservationCountPersonProps) => {
   const handleSelectionChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setValue(e.target.value);
+    setPersonCount(e.target.value);
+    dispatch(selectCountPerson(e.target.value));
   };
+
+  console.log('selectedCountPerson', selectedCountPerson);
 
   return (
     <Card className="w-72 my-2">
@@ -25,7 +27,7 @@ export const ReservationCountPerson = ({
             label="Seleccione cantidad :"
             variant="bordered"
             placeholder="Seleccione"
-            selectedKeys={[value]}
+            selectedKeys={[personCount]}
             className="max-w-xs"
             onChange={handleSelectionChange}
           >
@@ -40,7 +42,7 @@ export const ReservationCountPerson = ({
             ))}
           </Select>
           <p className="text-small text-default-500 font-semibold my-3">
-            Reserva para: {value.toString()}
+            Reserva para: {personCount}
           </p>
         </div>
       </CardBody>

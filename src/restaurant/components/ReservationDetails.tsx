@@ -3,49 +3,50 @@ import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { Button, Input, Textarea } from '@nextui-org/react';
 import { useContactFormValidator } from '../hooks/useContactFormValidator';
 import { ContactData } from '../models/contactData';
-import React, { Dispatch } from 'react';
 import { useReservationContext } from '../hooks/useReservationContext';
 import {
   getReservationDetails,
   selectTab,
 } from '../reducer/ReservationActions';
+import { useState } from 'react';
+import { useValidateReservationShedule } from '../hooks';
 
-interface ReservationDetailsProps {
-  setReservationDetails: Dispatch<React.SetStateAction<ContactData>>;
-  setSelectedTab: Dispatch<React.SetStateAction<string | number>>;
-  isValidateReservationDetails: boolean;
-  reservationDetails: ContactData;
-}
-
-export const ReservationDetails = ({
-  // setReservationDetails,
-  // setSelectedTab,
-  isValidateReservationDetails,
-}: ReservationDetailsProps) => {
+export const ReservationDetails = () => {
   const { yupResolver, schemaValidator } = useContactFormValidator();
+  const { initialState, dispatch } = useReservationContext();
+  const {
+    reservationDetails,
+    // selectedTurn,
+    // selectedSchedule,
+    // selectedCountPerson,
+  } = initialState;
+  const { name, email, phone, message } = reservationDetails;
+  const [, setDetails] = useState(reservationDetails);
+
+  // const { isValidateReservationDetails } = useValidateReservationShedule(
+  //   selectedTurn,
+  //   selectedSchedule,
+  //   selectedCountPerson
+  // );
+
   const {
     control,
     handleSubmit,
     // reset,
     formState: { isValid, errors },
   } = useForm({
-    defaultValues: { name: '', email: '', phone: '', message: '' },
+    defaultValues: { name, email, phone, message },
     resolver: yupResolver(schemaValidator),
     mode: 'onTouched',
   });
 
-  const { dispatch } = useReservationContext();
-
-  const onSubmit: SubmitHandler<ContactData> = (data: ContactData) => {
+  const onSubmit: SubmitHandler<ContactData> = (data) => {
+    // console.log('data :', data);
+    setDetails(data);
     dispatch(getReservationDetails(data));
-    // const updateState = UseReservationDetailsUpdate(
-    //   data,
-    //   setReservationDetails
-    // );
-    // updateState;
-    // setReservationDetails(data); // reset();
-    // console.log('Reservation Details:', data);
+    dispatch(selectTab('step3'));
   };
+  console.log('reservationDetails', reservationDetails);
 
   return (
     <div className="flex flex-col sm:flex-row sm:justify-center pl-10">
@@ -140,19 +141,19 @@ export const ReservationDetails = ({
         <Button
           color="success"
           variant="solid"
-          isDisabled={(isValid && isValidateReservationDetails) == false}
+          // isDisabled={isValid && !isValidateReservationDetails}
           id="send-message"
           type="submit"
           endContent={
             <img className="w-5" src="./arrow-next-right.svg" alt="icon-next" />
           }
           className="text-white font-semibold "
-          onPress={() => dispatch(selectTab('step3'))}
+          // onPress={() => dispatch(selectTab('step3'))}
         >
           Siguiente paso
         </Button>
         <Button
-          color="success"
+          color="warning"
           variant="solid"
           id="send-message"
           type="submit"

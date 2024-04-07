@@ -8,6 +8,8 @@ import {
 } from '@nextui-org/react';
 import { ContactData } from '../models/contactData';
 import { format } from 'date-fns';
+import { useReservationContext } from '../hooks/useReservationContext';
+import { selectTab } from '../reducer/ReservationActions';
 
 interface ReservationSummaryProps {
   selectedTurn: number | string;
@@ -23,9 +25,8 @@ export const ReservationSummary = ({
   selectedDate,
   reservationDetails,
 }: ReservationSummaryProps) => {
-  console.log('selectedDate:');
-
   const { name, email, phone, message } = reservationDetails;
+  const { initialState, dispatch } = useReservationContext();
 
   return (
     <>
@@ -104,6 +105,24 @@ export const ReservationSummary = ({
             // onPress={() => setSelectedTab('step3')}
           >
             Confirmar Reserva
+          </Button>
+
+          <Button
+            color="warning"
+            variant="solid"
+            id="send-message"
+            type="submit"
+            startContent={
+              <img
+                className="w-5"
+                src="./arrow-next-left.svg"
+                alt="icon-back"
+              />
+            }
+            className="text-white font-semibold "
+            onPress={() => dispatch(selectTab('step2'))}
+          >
+            Paso Anterior
           </Button>
         </CardFooter>
       </Card>

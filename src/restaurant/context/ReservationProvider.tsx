@@ -1,5 +1,4 @@
 import { useReducer } from 'react';
-import { Schedule, TypeFood } from '../models/reservationData';
 import { ReservationState } from '../models/reservationState';
 import { ReservationContext } from './ReservationContext';
 import { ReservationReducer } from '../reducer/ReservationReducer';
@@ -11,8 +10,8 @@ const initialStateReservation: ReservationState = {
   selectedTab: 'step1',
   selectedDate: new Date(),
   selectedCountPerson: 0,
-  selectedTurn: TypeFood.Breakfast,
-  selectedSchedule: Schedule.Breakfast,
+  selectedTurn: '',
+  selectedSchedule: '',
   reservationDetails: { name: '', email: '', phone: '', message: '' },
 };
 

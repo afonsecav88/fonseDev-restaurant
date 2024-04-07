@@ -6,16 +6,14 @@ import { useState } from 'react';
 
 export const ReservationTurn = () => {
   const dayOfWeek = 0;
-  const [turn, setTurn] = useState('');
   const { initialState, dispatch } = useReservationContext();
   const { selectedTurn } = initialState;
+  const [turn, setTurn] = useState<string | number>(selectedTurn);
 
   const handleSelectionChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setTurn(e.target.value);
     dispatch(selectTurn(e.target.value));
   };
-
-  console.log('selectedTurn', selectedTurn);
 
   const getTurnAccordingDay = () => {
     return dayOfWeek == 0 || dayOfWeek == 1 ? turnFoodsDataW : turnFoodsData;
