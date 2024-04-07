@@ -1,8 +1,18 @@
 import emailjs from '@emailjs/browser';
-import { ContactData } from '../models/contactData';
 
-export const UseSendEmailReservation = (bodyMail: ContactData) => {
-  const { name, email } = bodyMail;
+import { ReservationState } from '../models/reservationState';
+
+export const UseSendEmailReservation = (bodyMail: ReservationState) => {
+  console.log(bodyMail);
+  const {
+    reservationDetails,
+    selectedDate,
+    selectedTurn,
+    selectedSchedule,
+    selectedCountPerson,
+  } = bodyMail;
+  const { email, name, phone, message } = reservationDetails;
+
   emailjs.init(import.meta.env.VITE_EMAIL_USER_ID);
   emailjs
     .send(
@@ -12,7 +22,14 @@ export const UseSendEmailReservation = (bodyMail: ContactData) => {
         addressee: email,
         reply_to: import.meta.env.VITE_EMAIL_ADDRESSEE,
         to_name: name,
-        message: JSON.stringify(bodyMail),
+        selectedDate,
+        selectedTurn,
+        selectedSchedule,
+        selectedCountPerson,
+        name,
+        email,
+        phone,
+        message,
       }
     )
     .then((response) => {

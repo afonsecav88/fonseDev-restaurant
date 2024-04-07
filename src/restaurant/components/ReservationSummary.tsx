@@ -9,8 +9,11 @@ import {
 import { format } from 'date-fns';
 import { useReservationContext } from '../hooks/useReservationContext';
 import { selectTab } from '../reducer/ReservationActions';
+import { UseSendEmailReservation } from '../hooks/useSendEmailReservation';
+import { useState } from 'react';
 
 export const ReservationSummary = () => {
+  const [isDisable, setIsDisable] = useState(false);
   const { initialState, dispatch } = useReservationContext();
   const {
     reservationDetails,
@@ -20,6 +23,11 @@ export const ReservationSummary = () => {
     selectedCountPerson,
   } = initialState;
   const { name, email, phone, message } = reservationDetails;
+
+  const HandleSubmitReservation = () => {
+    UseSendEmailReservation(initialState);
+    setIsDisable(true);
+  };
 
   return (
     <>
@@ -112,6 +120,8 @@ export const ReservationSummary = () => {
             <Button
               className="flex  bg-success-200 text-slate-600 font-semibold "
               size="md"
+              type="submit"
+              isDisabled={isDisable}
               startContent={
                 <img
                   className="w-5"
@@ -119,7 +129,7 @@ export const ReservationSummary = () => {
                   alt="icon-back"
                 />
               }
-              // onPress={() => setSelectedTab('step3')}
+              onClick={HandleSubmitReservation}
             >
               Confirmar Reserva
             </Button>
