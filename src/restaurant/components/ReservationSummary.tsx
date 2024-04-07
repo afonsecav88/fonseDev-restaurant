@@ -6,27 +6,20 @@ import {
   CardHeader,
   Divider,
 } from '@nextui-org/react';
-import { ContactData } from '../models/contactData';
 import { format } from 'date-fns';
 import { useReservationContext } from '../hooks/useReservationContext';
 import { selectTab } from '../reducer/ReservationActions';
 
-interface ReservationSummaryProps {
-  selectedTurn: number | string;
-  selectedSchedule: number | string;
-  selectedCountPerson: number | string;
-  selectedDate: Date | undefined;
-  reservationDetails: ContactData;
-}
-export const ReservationSummary = ({
-  selectedTurn,
-  selectedSchedule,
-  selectedCountPerson,
-  selectedDate,
-  reservationDetails,
-}: ReservationSummaryProps) => {
-  const { name, email, phone, message } = reservationDetails;
+export const ReservationSummary = () => {
   const { initialState, dispatch } = useReservationContext();
+  const {
+    reservationDetails,
+    selectedDate,
+    selectedSchedule,
+    selectedTurn,
+    selectedCountPerson,
+  } = initialState;
+  const { name, email, phone, message } = reservationDetails;
 
   return (
     <>
@@ -98,32 +91,39 @@ export const ReservationSummary = ({
             Al confirmar su reserva, recibirá un mail con los detalles de la
             misma.{' '}
           </p>
-
-          <Button
-            className="flex  mt-2 p-4 h-10 bg-success-200 text-slate-600 font-semibold "
-            size="md"
-            // onPress={() => setSelectedTab('step3')}
-          >
-            Confirmar Reserva
-          </Button>
-
-          <Button
-            color="warning"
-            variant="solid"
-            id="send-message"
-            type="submit"
-            startContent={
-              <img
-                className="w-5"
-                src="./arrow-next-left.svg"
-                alt="icon-back"
-              />
-            }
-            className="text-white font-semibold "
-            onPress={() => dispatch(selectTab('step2'))}
-          >
-            Paso Anterior
-          </Button>
+          <div className="inline-flex gap-3">
+            <Button
+              color="warning"
+              variant="solid"
+              id="send-message"
+              type="submit"
+              startContent={
+                <img
+                  className="w-4"
+                  src="./arrow-next-left.svg"
+                  alt="icon-back"
+                />
+              }
+              className="text-white font-semibold "
+              onPress={() => dispatch(selectTab('step2'))}
+            >
+              Paso Anterior
+            </Button>
+            <Button
+              className="flex  bg-success-200 text-slate-600 font-semibold "
+              size="md"
+              startContent={
+                <img
+                  className="w-5"
+                  src="./check-reservation.svg"
+                  alt="icon-back"
+                />
+              }
+              // onPress={() => setSelectedTab('step3')}
+            >
+              Confirmar Reserva
+            </Button>
+          </div>
         </CardFooter>
       </Card>
     </>

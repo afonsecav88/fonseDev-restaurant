@@ -61,7 +61,7 @@ export const ReservationDate = () => {
           size="md"
           isDisabled={validateDate}
           endContent={
-            <img className="w-5" src="./arrow-next-right.svg" alt="icon-next" />
+            <img className="w-4" src="./arrow-next-right.svg" alt="icon-next" />
           }
           onPress={() => dispatch(selectTab('step2'))}
         >

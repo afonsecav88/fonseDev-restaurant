@@ -9,7 +9,6 @@ import {
   selectTab,
 } from '../reducer/ReservationActions';
 import { useState } from 'react';
-import { useValidateReservationShedule } from '../hooks';
 
 export const ReservationDetails = () => {
   const { yupResolver, schemaValidator } = useContactFormValidator();
@@ -145,7 +144,7 @@ export const ReservationDetails = () => {
           id="send-message"
           type="submit"
           endContent={
-            <img className="w-5" src="./arrow-next-right.svg" alt="icon-next" />
+            <img className="w-4" src="./arrow-next-right.svg" alt="icon-next" />
           }
           className="text-white font-semibold "
           // onPress={() => dispatch(selectTab('step3'))}
@@ -158,7 +157,7 @@ export const ReservationDetails = () => {
           id="send-message"
           type="submit"
           startContent={
-            <img className="w-5" src="./arrow-next-left.svg" alt="icon-back" />
+            <img className="w-4" src="./arrow-next-left.svg" alt="icon-back" />
           }
           className="text-white font-semibold "
           onPress={() => dispatch(selectTab('step1'))}

@@ -9,29 +9,13 @@ import {
   ReservationCountPerson,
 } from './index';
 
-import {
-  // useValidateReservationShedule,
-  useReservationStepsStates,
-} from '../hooks/';
+import {} from '../hooks/';
 import { useReservationContext } from '../hooks/useReservationContext';
 import { selectTab } from '../reducer/ReservationActions';
 
 export const ReservationSteps = () => {
-  const {
-    selectedCountPerson,
-    selectedTurn,
-    selectedSchedule,
-    reservationDetails,
-  } = useReservationStepsStates();
-
   const { initialState, dispatch } = useReservationContext();
-  const { selectedDate, selectedTab } = initialState;
-
-  // const { isValidateReservationDetails } = useValidateReservationShedule(
-  //   selectedTurn,
-  //   selectedSchedule,
-  //   selectedCountPerson
-  // );
+  const { selectedTab } = initialState;
 
   const handleOnSelectionChange = () => {
     dispatch(selectTab(selectedTab));
@@ -69,13 +53,7 @@ export const ReservationSteps = () => {
         </Tab>
 
         <Tab key="step3" title="Confirmar">
-          <ReservationSummary
-            selectedTurn={selectedTurn}
-            selectedSchedule={selectedSchedule}
-            selectedCountPerson={selectedCountPerson}
-            selectedDate={selectedDate}
-            reservationDetails={reservationDetails}
-          />
+          <ReservationSummary />
         </Tab>
       </Tabs>
     </div>
