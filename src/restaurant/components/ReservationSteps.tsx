@@ -46,6 +46,9 @@ export const ReservationSteps = () => {
           title="Horarios y Detalles"
         >
           <div className="flex flex-col">
+            <p className="text-center my-2 text-medium  text-red-400">
+              Todo los campos son obligatorios
+            </p>
             <ReservationTurn />
             <ReservationSchedule />
             <ReservationCountPerson />
