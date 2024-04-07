@@ -3,11 +3,12 @@ import { turnFoodsData, turnFoodsDataW } from '../mocks/turnsFoodsData';
 import { useReservationContext } from '../hooks/useReservationContext';
 import { selectTurn } from '../reducer/ReservationActions';
 import { useState } from 'react';
+import { useGetDayOfWeek } from '../hooks';
 
 export const ReservationTurn = () => {
-  const dayOfWeek = 0;
   const { initialState, dispatch } = useReservationContext();
-  const { selectedTurn } = initialState;
+  const { selectedTurn, selectedDate } = initialState;
+  const dayOfWeek = useGetDayOfWeek(selectedDate);
   const [turn, setTurn] = useState<string | number>(selectedTurn);
 
   const handleSelectionChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -44,9 +45,14 @@ export const ReservationTurn = () => {
               </SelectItem>
             ))}
           </Select>
-          <p className="text-small text-default-500 font-semibold my-3">
-            Reserva para: {turn.toString()}
-          </p>
+          <div className="inline-flex">
+            <p className="text-small text-default-500 font-bold my-3 mr-2">
+              Horario de:
+            </p>
+            <p className="text-small text-default-500 font-semibold my-3">
+              {turn.toString()}
+            </p>
+          </div>
         </div>
       </CardBody>
     </Card>

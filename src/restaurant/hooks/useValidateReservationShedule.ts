@@ -1,26 +1,26 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export const useValidateReservationShedule = (
   selectedTurn: string | number,
   selectedSchedule: string | number,
   selectedCountPerson: string | number
 ) => {
-  const [isValidateReservationDetails, setIsValidateReservationDetails] =
-    useState(false);
+  const [isValidDataSchedule, setIsValidDataSchedule] = useState(false);
 
-  const validateReservationDetails =
-    selectedCountPerson == '' ||
-    0 ||
-    selectedSchedule == '' ||
-    0 ||
-    selectedTurn == '' ||
-    0
-      ? false
-      : true;
-
-  setIsValidateReservationDetails(validateReservationDetails);
+  useEffect(() => {
+    if (
+      selectedTurn !== '' &&
+      selectedSchedule !== '' &&
+      selectedCountPerson !== ''
+    )
+      setIsValidDataSchedule(true);
+    else {
+      setIsValidDataSchedule(false);
+    }
+    console.log('me ejecute');
+  }, [selectedCountPerson, selectedSchedule, selectedTurn]);
 
   return {
-    isValidateReservationDetails,
+    isValidDataSchedule,
   };
 };

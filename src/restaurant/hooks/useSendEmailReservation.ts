@@ -1,5 +1,5 @@
 import emailjs from '@emailjs/browser';
-
+import { format } from 'date-fns';
 import { ReservationState } from '../models/reservationState';
 
 export const UseSendEmailReservation = (bodyMail: ReservationState) => {
@@ -22,7 +22,7 @@ export const UseSendEmailReservation = (bodyMail: ReservationState) => {
         addressee: email,
         reply_to: import.meta.env.VITE_EMAIL_ADDRESSEE,
         to_name: name,
-        selectedDate,
+        selectedDate: format(selectedDate, 'PP'),
         selectedTurn,
         selectedSchedule,
         selectedCountPerson,

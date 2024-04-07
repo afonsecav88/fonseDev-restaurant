@@ -55,5 +55,3 @@ export const getReservationDetails = (
     payload,
   };
 };
-
-// export const summitReservationDetails = () => {};

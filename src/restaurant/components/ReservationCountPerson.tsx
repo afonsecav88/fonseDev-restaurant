@@ -14,8 +14,6 @@ export const ReservationCountPerson = () => {
     dispatch(selectCountPerson(e.target.value));
   };
 
-  console.log('selectedCountPerson', selectedCountPerson);
-
   return (
     <Card className="w-72 my-2">
       <CardBody>
@@ -41,9 +39,14 @@ export const ReservationCountPerson = () => {
               </SelectItem>
             ))}
           </Select>
-          <p className="text-small text-default-500 font-semibold my-3">
-            Reserva para: {personCount}
-          </p>
+          <div className="inline-flex">
+            <p className="text-small text-default-500 font-bold my-3 mr-2">
+              Horario de:
+            </p>
+            <p className="text-small text-default-500 font-semibold my-3">
+              {selectedCountPerson.toString()}
+            </p>
+          </div>
         </div>
       </CardBody>
     </Card>

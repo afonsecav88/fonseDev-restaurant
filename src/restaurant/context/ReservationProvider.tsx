@@ -9,7 +9,7 @@ interface ReservationProviderProps {
 const initialStateReservation: ReservationState = {
   selectedTab: 'step1',
   selectedDate: new Date(),
-  selectedCountPerson: 0,
+  selectedCountPerson: '',
   selectedTurn: '',
   selectedSchedule: '',
   reservationDetails: { name: '', email: '', phone: '', message: '' },

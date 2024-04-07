@@ -9,24 +9,28 @@ import {
   selectTab,
 } from '../reducer/ReservationActions';
 import { useState } from 'react';
+import { useValidateReservationShedule } from '../hooks';
 
 export const ReservationDetails = () => {
   const { yupResolver, schemaValidator } = useContactFormValidator();
   const { initialState, dispatch } = useReservationContext();
   const {
     reservationDetails,
-    // selectedTurn,
-    // selectedSchedule,
-    // selectedCountPerson,
+    selectedTurn,
+    selectedSchedule,
+    selectedCountPerson,
   } = initialState;
   const { name, email, phone, message } = reservationDetails;
   const [, setDetails] = useState(reservationDetails);
-
-  // const { isValidateReservationDetails } = useValidateReservationShedule(
-  //   selectedTurn,
-  //   selectedSchedule,
-  //   selectedCountPerson
-  // );
+  const { isValidDataSchedule } = useValidateReservationShedule(
+    selectedTurn,
+    selectedSchedule,
+    selectedCountPerson
+  );
+  console.log('checkIsInvalidDataSchedule', isValidDataSchedule);
+  console.log('selectedTurn:', selectedTurn);
+  console.log('selectedSchedule:', selectedSchedule);
+  console.log('selectedCountPerson:', selectedCountPerson);
 
   const {
     control,
@@ -40,12 +44,10 @@ export const ReservationDetails = () => {
   });
 
   const onSubmit: SubmitHandler<ContactData> = (data) => {
-    // console.log('data :', data);
     setDetails(data);
     dispatch(getReservationDetails(data));
     dispatch(selectTab('step3'));
   };
-  console.log('reservationDetails', reservationDetails);
 
   return (
     <div className="flex flex-col sm:flex-row sm:justify-center pl-10">
@@ -140,7 +142,7 @@ export const ReservationDetails = () => {
         <Button
           color="success"
           variant="solid"
-          // isDisabled={isValid && !isValidateReservationDetails}
+          isDisabled={(isValid && isValidDataSchedule) == false}
           id="send-message"
           type="submit"
           endContent={
