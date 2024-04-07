@@ -5,17 +5,17 @@ import { selectTurn } from '../reducer/ReservationActions';
 import { useState } from 'react';
 
 export const ReservationTurn = () => {
+  const dayOfWeek = 0;
   const [turn, setTurn] = useState('');
   const { initialState, dispatch } = useReservationContext();
   const { selectedTurn } = initialState;
 
   const handleSelectionChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    if (e.target.value == turn) return;
     setTurn(e.target.value);
-    dispatch(selectTurn(turn));
-    console.log('selectedTurn', selectedTurn);
+    dispatch(selectTurn(e.target.value));
   };
-  const dayOfWeek = 0;
+
+  console.log('selectedTurn', selectedTurn);
 
   const getTurnAccordingDay = () => {
     return dayOfWeek == 0 || dayOfWeek == 1 ? turnFoodsDataW : turnFoodsData;

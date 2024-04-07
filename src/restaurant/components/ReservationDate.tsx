@@ -3,14 +3,22 @@ import { DayPicker } from 'react-day-picker';
 import { es } from 'date-fns/locale';
 import { Button, Card, CardBody, Divider } from '@nextui-org/react';
 import { useReservationContext } from '../hooks/useReservationContext';
-import { useState } from 'react';
-import { selectTab } from '../reducer/ReservationActions';
+import { useEffect, useState } from 'react';
+import { selectDate, selectTab } from '../reducer/ReservationActions';
 import { useValidateReservationDate } from '../hooks';
 
 export const ReservationDate = () => {
   const [selected, setSelected] = useState<Date>(new Date());
-  const { dispatch } = useReservationContext();
+  const { initialState, dispatch } = useReservationContext();
   const validateDate = useValidateReservationDate(selected);
+  const { selectedDate } = initialState;
+
+  useEffect(() => {
+    dispatch(selectDate(selected));
+  }, [dispatch, selected]);
+
+  console.log('selectedDate', selectedDate);
+
   let footer = <></>;
 
   const currentDate = new Date();
