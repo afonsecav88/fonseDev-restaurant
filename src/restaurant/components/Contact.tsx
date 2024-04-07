@@ -4,7 +4,7 @@ import { ContactData } from '../models/contactData';
 import { ContactDetails } from './ContactDetails';
 import { DevTool } from '@hookform/devtools';
 
-import { UseSendEmail, useContactFormValidator } from '../hooks/';
+import { useContactFormValidator, UseSendEmailContact } from '../hooks/';
 
 export const Contact = () => {
   const { yupResolver, schemaValidator } = useContactFormValidator();
@@ -20,7 +20,7 @@ export const Contact = () => {
   });
 
   const onSubmit: SubmitHandler<ContactData> = (data) => {
-    UseSendEmail(data);
+    UseSendEmailContact(data);
     reset();
   };
 
