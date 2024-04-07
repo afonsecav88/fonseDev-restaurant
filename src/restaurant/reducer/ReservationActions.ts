@@ -1,4 +1,5 @@
 import { ContactData } from '../models/contactData';
+import { ReservationState } from '../models/reservationState';
 
 export type ReservationActions =
   | { type: 'Select Tab'; payload: string }
@@ -6,7 +7,8 @@ export type ReservationActions =
   | { type: 'Select turn'; payload: number | string }
   | { type: 'Select schedule'; payload: number | string }
   | { type: 'Select Count Persons'; payload: number | string }
-  | { type: 'Get reservation Details'; payload: ContactData };
+  | { type: 'Get reservation Details'; payload: ContactData }
+  | { type: 'Set reservation state'; payload: ReservationState };
 
 export const selectTab = (payload: string): ReservationActions => {
   return {
@@ -52,6 +54,15 @@ export const getReservationDetails = (
 ): ReservationActions => {
   return {
     type: 'Get reservation Details',
+    payload,
+  };
+};
+
+export const setReservationDetails = (
+  payload: ReservationState
+): ReservationActions => {
+  return {
+    type: 'Set reservation state',
     payload,
   };
 };

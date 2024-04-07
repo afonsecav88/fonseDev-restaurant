@@ -6,6 +6,7 @@ import { useReservationContext } from '../hooks/useReservationContext';
 import { useEffect, useState } from 'react';
 import { selectDate, selectTab } from '../reducer/ReservationActions';
 import { useValidateReservationDate } from '../hooks';
+import { Steps } from '../models/reservationData';
 
 export const ReservationDate = () => {
   const { initialState, dispatch } = useReservationContext();
@@ -63,7 +64,7 @@ export const ReservationDate = () => {
           endContent={
             <img className="w-4" src="./arrow-next-right.svg" alt="icon-next" />
           }
-          onPress={() => dispatch(selectTab('step2'))}
+          onPress={() => dispatch(selectTab(Steps.Step2))}
         >
           Siguiente paso
         </Button>

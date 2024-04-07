@@ -17,7 +17,6 @@ export const useValidateReservationShedule = (
     else {
       setIsValidDataSchedule(false);
     }
-    console.log('me ejecute');
   }, [selectedCountPerson, selectedSchedule, selectedTurn]);
 
   return {

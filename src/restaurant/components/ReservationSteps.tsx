@@ -12,6 +12,7 @@ import {
 import {} from '../hooks/';
 import { useReservationContext } from '../hooks/useReservationContext';
 import { selectTab } from '../reducer/ReservationActions';
+import { Steps } from '../models/reservationData';
 
 export const ReservationSteps = () => {
   const { initialState, dispatch } = useReservationContext();
@@ -35,13 +36,13 @@ export const ReservationSteps = () => {
         aria-label="Tabs steps"
         radius="full"
       >
-        <Tab key="step1" title="Fecha">
+        <Tab key={Steps.Step1} title="Fecha">
           <ReservationDate />
         </Tab>
 
         <Tab
           className="flex flex-col  sm:flex-row text-red-500"
-          key="step2"
+          key={Steps.Step2}
           title="Horarios y Detalles"
         >
           <div className="flex flex-col">
@@ -52,7 +53,7 @@ export const ReservationSteps = () => {
           <ReservationDetails />
         </Tab>
 
-        <Tab key="step3" title="Confirmar">
+        <Tab key={Steps.Step3} title="Confirmar">
           <ReservationSummary />
         </Tab>
       </Tabs>

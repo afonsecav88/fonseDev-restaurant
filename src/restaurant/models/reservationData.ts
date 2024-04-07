@@ -26,3 +26,9 @@ export enum Schedule {
   BreakfastW = '9:00 a.m. - 2:00 p.m.',
   DinnerW = '5:00 p.m. - 9:00 p.m.',
 }
+
+export enum Steps {
+  Step1 = 'step1',
+  Step2 = 'step2',
+  Step3 = 'step3',
+}

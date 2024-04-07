@@ -10,6 +10,7 @@ import {
 } from '../reducer/ReservationActions';
 import { useState } from 'react';
 import { useValidateReservationShedule } from '../hooks';
+import { Steps } from '../models/reservationData';
 
 export const ReservationDetails = () => {
   const { yupResolver, schemaValidator } = useContactFormValidator();
@@ -27,10 +28,6 @@ export const ReservationDetails = () => {
     selectedSchedule,
     selectedCountPerson
   );
-  console.log('checkIsInvalidDataSchedule', isValidDataSchedule);
-  console.log('selectedTurn:', selectedTurn);
-  console.log('selectedSchedule:', selectedSchedule);
-  console.log('selectedCountPerson:', selectedCountPerson);
 
   const {
     control,
@@ -46,7 +43,7 @@ export const ReservationDetails = () => {
   const onSubmit: SubmitHandler<ContactData> = (data) => {
     setDetails(data);
     dispatch(getReservationDetails(data));
-    dispatch(selectTab('step3'));
+    dispatch(selectTab(Steps.Step3));
   };
 
   return (
@@ -149,7 +146,6 @@ export const ReservationDetails = () => {
             <img className="w-4" src="./arrow-next-right.svg" alt="icon-next" />
           }
           className="text-white font-semibold "
-          // onPress={() => dispatch(selectTab('step3'))}
         >
           Siguiente paso
         </Button>
@@ -162,7 +158,7 @@ export const ReservationDetails = () => {
             <img className="w-4" src="./arrow-next-left.svg" alt="icon-back" />
           }
           className="text-white font-semibold "
-          onPress={() => dispatch(selectTab('step1'))}
+          onPress={() => dispatch(selectTab(Steps.Step1))}
         >
           Paso Anterior
         </Button>

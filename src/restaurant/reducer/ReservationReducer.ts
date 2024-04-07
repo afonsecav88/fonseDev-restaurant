@@ -25,6 +25,9 @@ export const ReservationReducer = (
     case 'Get reservation Details': {
       return { ...state, reservationDetails: action.payload };
     }
+    case 'Set reservation state': {
+      return { ...state, ...action.payload };
+    }
     default: {
       return state;
     }

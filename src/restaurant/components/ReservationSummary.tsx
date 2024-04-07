@@ -9,12 +9,13 @@ import {
 import { format } from 'date-fns';
 import { useReservationContext } from '../hooks/useReservationContext';
 import { selectTab } from '../reducer/ReservationActions';
-import { UseSendEmailReservation } from '../hooks/useSendEmailReservation';
-import { useState } from 'react';
+
+import { Steps } from '../models/reservationData';
+import { useHandleSubmitReservation } from '../hooks/useHandleSubmitReservation';
 
 export const ReservationSummary = () => {
-  const [isDisable, setIsDisable] = useState(false);
   const { initialState, dispatch } = useReservationContext();
+  const { HandleSubmitReservation } = useHandleSubmitReservation();
   const {
     reservationDetails,
     selectedDate,
@@ -23,11 +24,6 @@ export const ReservationSummary = () => {
     selectedCountPerson,
   } = initialState;
   const { name, email, phone, message } = reservationDetails;
-
-  const HandleSubmitReservation = () => {
-    UseSendEmailReservation(initialState);
-    setIsDisable(true);
-  };
 
   return (
     <>
@@ -113,7 +109,7 @@ export const ReservationSummary = () => {
                 />
               }
               className="text-white font-semibold "
-              onPress={() => dispatch(selectTab('step2'))}
+              onPress={() => dispatch(selectTab(Steps.Step2))}
             >
               Paso Anterior
             </Button>
@@ -121,7 +117,6 @@ export const ReservationSummary = () => {
               className="flex  bg-success-200 text-slate-600 font-semibold "
               size="md"
               type="submit"
-              isDisabled={isDisable}
               startContent={
                 <img
                   className="w-5"
