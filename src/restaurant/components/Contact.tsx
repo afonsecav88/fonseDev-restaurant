@@ -5,6 +5,8 @@ import { ContactDetails } from './ContactDetails';
 import { DevTool } from '@hookform/devtools';
 
 import { useContactFormValidator, UseSendEmailContact } from '../hooks/';
+import { ReservationPdfDownload } from './ReservationPdfDownload';
+import { ReservationPdfViewer } from './ReservationPdfViewer';
 
 export const Contact = () => {
   const { yupResolver, schemaValidator } = useContactFormValidator();
@@ -124,6 +126,8 @@ export const Contact = () => {
         </Button>
       </form>
       <ContactDetails />
+      <ReservationPdfDownload />
+      <ReservationPdfViewer />
       <DevTool control={control} /> {/* set up the dev tool */}
     </div>
   );
