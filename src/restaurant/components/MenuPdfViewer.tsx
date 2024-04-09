@@ -1,8 +1,8 @@
 import { BlobProvider } from '@react-pdf/renderer';
-import { ReservationPdf } from './ReservationPdf';
+import { MenuPdf } from './MenuPdf';
 
-export const ReservationPdfViewer = () => (
-  <BlobProvider document={<ReservationPdf />}>
+export const MenuPdfViewer = () => (
+  <BlobProvider document={<MenuPdf />}>
     {({ url }) => (
       <a href={url} target="_blank">
         Open in new tab

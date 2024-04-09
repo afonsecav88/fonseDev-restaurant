@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export const ReservationPdf = () => (
+export const MenuPdf = () => (
   <Document>
     <Page size="A4" style={styles.page}>
       <View style={styles.section}>
