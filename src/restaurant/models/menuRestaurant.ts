@@ -3,6 +3,7 @@
 export interface MenuResturant {
   dia: string;
   comidas: Comida[];
+  imagen: string;
 }
 
 export interface Comida {
@@ -10,6 +11,5 @@ export interface Comida {
   tipo: string;
   plato: string;
   descripcion: string;
-  imagen: string;
   precio: number;
 }
