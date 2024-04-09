@@ -1,3 +1,5 @@
+import { MenuRestaurant } from '../components/MenuRestaurant';
+
 export const Menu = () => {
-  return <div>Menu</div>;
+  return <MenuRestaurant />;
 };
