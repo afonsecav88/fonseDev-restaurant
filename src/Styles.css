@@ -16,6 +16,17 @@ body {
   /* border-radius: 0.3rem; */
 }
 
+.success-notification {
+  color: #fcffff;
+  background-color: #2a9d8f;
+  font-size: small;
+}
+.error-notification {
+  color: #fcffff;
+  background-color: #9d3b2a;
+  font-size: small;
+}
+
 /* .navigate-Active {
   background-color: #2a9d8f;
   color: #2a9d8f;

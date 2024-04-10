@@ -1,9 +1,11 @@
 import emailjs from '@emailjs/browser';
 import { format } from 'date-fns';
 import { ReservationState } from '../models/reservationState';
+import { useNotification } from './useNotification';
 
 export const UseSendEmailReservation = (bodyMail: ReservationState) => {
-  console.log(bodyMail);
+  const { successReservationNotification, errorReservationNotification } =
+    useNotification();
   const {
     reservationDetails,
     selectedDate,
@@ -32,11 +34,11 @@ export const UseSendEmailReservation = (bodyMail: ReservationState) => {
         message,
       }
     )
-    .then((response) => {
-      console.log(response);
+    .then(() => {
+      successReservationNotification();
     })
     .catch((error) => {
-      console.log(error);
+      errorReservationNotification();
       throw new Error(`ha ocurrido un error: ${error}`);
     });
 };
