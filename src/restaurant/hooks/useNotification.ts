@@ -1,53 +1,37 @@
+import { EmailJSResponseStatus } from '@emailjs/browser';
 import { toast } from 'sonner';
 
 export const useNotification = () => {
-  const configSuccessReservation = {
-    className: 'success-notification',
-    duration: 3500,
-  };
-
-  const configSuccessContact = {
-    className: 'success-notification',
-    description: 'Su opinión es importante para nosotros !',
-    duration: 3500,
-  };
-  const configErrorContact = {
-    className: 'error-notification',
-    description: 'No se han podido enviar su mensaje !',
-    duration: 3500,
-  };
-  const configErrorReservation = {
-    className: 'error-notification',
-    description: 'No se ha podido realizar su reservación !',
-    duration: 3500,
-  };
-
-  const successReservationNotification = () =>
-    toast.success('Reserva creada correctamente', configSuccessReservation);
-
-  const successContactNotification = () =>
-    toast.success('Su mensaje ha sido enviado', configSuccessContact);
-
-  const errorContactNotification = () =>
-    toast.success('Ha ocurrio un error', configErrorContact);
-
-  const errorReservationNotification = () =>
-    toast.success('Ha ocurrio un error', configErrorReservation);
-
-  const notificationPromise = (myPromise: Promise<void>) =>
-    toast.promise(myPromise, {
+  const notificationContactPromise = (
+    sendMailcontactPromise: Promise<EmailJSResponseStatus>
+  ) =>
+    toast.promise(sendMailcontactPromise, {
       loading: 'Enviando su mensaje...',
       success: () => {
-        return `Su mensaje ha sido enviado`;
+        return `Su mensaje ha sido enviado correctamente !`;
       },
-      error: 'Ha ocurrio un error',
+      error: (error) => {
+        console.log(error);
+        return `Ha ocurrio un error: No se envió su mensaje`;
+      },
+    });
+
+  const notificationReservationPromise = (
+    sendMailcontactPromise: Promise<EmailJSResponseStatus>
+  ) =>
+    toast.promise(sendMailcontactPromise, {
+      loading: 'Realizando su reserva...',
+      success: () => {
+        return `Se ha realizado su reserva, revise su mail !`;
+      },
+      error: (error) => {
+        console.log(error);
+        return `Ha ocurrio un error: No se envió su reserva`;
+      },
     });
 
   return {
-    successReservationNotification,
-    errorContactNotification,
-    successContactNotification,
-    errorReservationNotification,
-    notificationPromise,
+    notificationContactPromise,
+    notificationReservationPromise,
   };
 };

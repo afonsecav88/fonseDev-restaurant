@@ -6,7 +6,6 @@ import { UseSendEmailReservation } from './useSendEmailReservation';
 
 export const useHandleSubmitReservation = () => {
   const { initialState, dispatch } = useReservationContext();
-  const navigate = useNavigate();
   const HandleSubmitReservation = () => {
     UseSendEmailReservation(initialState);
     dispatch(
@@ -19,7 +18,6 @@ export const useHandleSubmitReservation = () => {
         selectedCountPerson: '',
       })
     );
-    navigate('/');
   };
   return { HandleSubmitReservation };
 };
