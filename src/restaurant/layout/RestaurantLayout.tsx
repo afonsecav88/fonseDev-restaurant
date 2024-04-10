@@ -7,7 +7,13 @@ export const RestaurantLayout = () => {
     <>
       <Header />
       <main className="flex justify-center pt-8">
-        <Toaster position="bottom-center" />
+        <Toaster
+          position="bottom-center"
+          toastOptions={{
+            className: 'success-notification',
+          }}
+          richColors
+        />
         <Outlet />
       </main>
     </>
