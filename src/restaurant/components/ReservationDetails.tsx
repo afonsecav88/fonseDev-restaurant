@@ -47,7 +47,7 @@ export const ReservationDetails = () => {
   };
 
   return (
-    <div className="flex flex-col sm:flex-row sm:justify-center pl-10">
+    <div className="flex flex-col sm:flex-row sm:justify-center md:pl-10 sm:pl-4 py-4">
       <form
         method="post"
         onSubmit={handleSubmit(onSubmit)}

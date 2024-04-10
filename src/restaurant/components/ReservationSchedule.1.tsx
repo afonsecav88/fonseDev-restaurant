@@ -20,9 +20,9 @@ export const ReservationSchedule = () => {
   };
 
   return (
-    <Card className="w-72 my-3">
+    <Card className="w-72 my-3 ">
       <CardBody>
-        <div className="flex w-full max-w-xs flex-col gap-2">
+        <div className="flex w-full max-w-xs flex-col gap-2 ">
           <p className="py-3 font-semibold text-sm text-green-400">
             Seleccione Hora:
           </p>
