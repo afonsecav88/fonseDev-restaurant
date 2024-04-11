@@ -22,4 +22,4 @@
 2. Para levantar el server de desarrollo ```npm run dev```
 3. Para hacer el build de la app ```npm run build``` 
 
-> NOTA: La app esta desplegada en este URL : 
+> NOTA: La app esta desplegada en este URL :  https://fonse-dev-restaurant.vercel.app
