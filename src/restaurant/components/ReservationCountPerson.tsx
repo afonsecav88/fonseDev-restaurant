@@ -1,7 +1,7 @@
+import { useState } from 'react';
 import { Card, CardBody, Select, SelectItem } from '@nextui-org/react';
 import { personCountData } from '../mocks/personCountData';
-import { useState } from 'react';
-import { useReservationContext } from '../hooks/useReservationContext';
+import { useReservationContext } from '../hooks/';
 import { selectCountPerson } from '../reducer/ReservationActions';
 
 export const ReservationCountPerson = () => {

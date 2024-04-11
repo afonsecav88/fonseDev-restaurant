@@ -7,11 +7,9 @@ import {
   Divider,
 } from '@nextui-org/react';
 import { format } from 'date-fns';
-import { useReservationContext } from '../hooks/useReservationContext';
+import { useReservationContext, useHandleSubmitReservation } from '../hooks/';
 import { selectTab } from '../reducer/ReservationActions';
-
 import { Steps } from '../models/reservationData';
-import { useHandleSubmitReservation } from '../hooks/useHandleSubmitReservation';
 
 export const ReservationSummary = () => {
   const { initialState, dispatch } = useReservationContext();
@@ -33,7 +31,7 @@ export const ReservationSummary = () => {
           <div className="flex flex-col">
             <p className="text-md underline">Fecha:</p>
             <p className="text-small text-default-500">
-              {format(selectedDate, 'PP')}
+              {format(selectedDate!, 'PP')}
             </p>
           </div>
         </CardHeader>

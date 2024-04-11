@@ -1,4 +1,3 @@
-import { useNavigate } from 'react-router-dom';
 import { setReservationDetails } from '../reducer/ReservationActions';
 import { useReservationContext } from './useReservationContext';
 import { Steps } from '../models/reservationData';

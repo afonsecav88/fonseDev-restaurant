@@ -2,7 +2,6 @@ import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { Button, Input, Textarea } from '@nextui-org/react';
 import { ContactData } from '../models/contactData';
 import { ContactDetails } from './ContactDetails';
-
 import { useContactFormValidator, UseSendEmailContact } from '../hooks/';
 
 export const Contact = () => {

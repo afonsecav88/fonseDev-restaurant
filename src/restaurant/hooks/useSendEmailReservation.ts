@@ -22,7 +22,7 @@ export const UseSendEmailReservation = (bodyMail: ReservationState) => {
       addressee: email,
       reply_to: import.meta.env.VITE_EMAIL_ADDRESSEE,
       to_name: name,
-      selectedDate: format(selectedDate, 'PP'),
+      selectedDate: format(selectedDate!, 'PP'),
       selectedTurn,
       selectedSchedule,
       selectedCountPerson,
@@ -31,6 +31,6 @@ export const UseSendEmailReservation = (bodyMail: ReservationState) => {
       phone,
       message,
     }
-  ); 
+  );
   notificationReservationPromise(sendMailReservationPromise);
 };

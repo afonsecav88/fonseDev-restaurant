@@ -1,16 +1,17 @@
+import { useState } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
-
 import { Button, Input, Textarea } from '@nextui-org/react';
-import { useContactFormValidator } from '../hooks/useContactFormValidator';
 import { ContactData } from '../models/contactData';
-import { useReservationContext } from '../hooks/useReservationContext';
+import { Steps } from '../models/reservationData';
+import {
+  useContactFormValidator,
+  useReservationContext,
+  useValidateReservationShedule,
+} from '../hooks/';
 import {
   getReservationDetails,
   selectTab,
 } from '../reducer/ReservationActions';
-import { useState } from 'react';
-import { useValidateReservationShedule } from '../hooks';
-import { Steps } from '../models/reservationData';
 
 export const ReservationDetails = () => {
   const { yupResolver, schemaValidator } = useContactFormValidator();

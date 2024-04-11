@@ -2,21 +2,13 @@ import { format } from 'date-fns';
 import { DayPicker } from 'react-day-picker';
 import { es } from 'date-fns/locale';
 import { Button, Card, CardBody, Divider } from '@nextui-org/react';
-import { useReservationContext } from '../hooks/useReservationContext';
-import { useEffect, useState } from 'react';
-import { selectDate, selectTab } from '../reducer/ReservationActions';
-import { useValidateReservationDate } from '../hooks';
+import { selectTab } from '../reducer/ReservationActions';
+import { useValidateReservationDate, useReservationDate } from '../hooks';
 import { Steps } from '../models/reservationData';
 
 export const ReservationDate = () => {
-  const { initialState, dispatch } = useReservationContext();
-  const { selectedDate } = initialState;
-  const [selected, setSelected] = useState<Date | undefined>(selectedDate);
+  const { selected, setSelected, dispatch } = useReservationDate();
   const validateDate = useValidateReservationDate(selected);
-
-  useEffect(() => {
-    dispatch(selectDate(selected));
-  }, [dispatch, selected]);
 
   let footer = <></>;
 
@@ -38,7 +30,7 @@ export const ReservationDate = () => {
       <>
         <Divider className="mt-3" orientation="horizontal" />
         <p className="text-center mt-4 text-medium  text-green-500 ">
-          Has seleccionado este día: <br /> {format(selected, 'PP')}.
+          Has seleccionado este día: <br /> {format(selected!, 'PP')}.
         </p>
       </>
     );

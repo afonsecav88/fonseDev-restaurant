@@ -1,5 +1,7 @@
 import { Tabs, Tab } from '@nextui-org/react';
-
+import { useReservationContext } from '../hooks/';
+import { selectTab } from '../reducer/ReservationActions';
+import { Steps } from '../models/reservationData';
 import {
   ReservationDate,
   ReservationTurn,
@@ -8,11 +10,6 @@ import {
   ReservationSchedule,
   ReservationCountPerson,
 } from './index';
-
-import {} from '../hooks/';
-import { useReservationContext } from '../hooks/useReservationContext';
-import { selectTab } from '../reducer/ReservationActions';
-import { Steps } from '../models/reservationData';
 
 export const ReservationSteps = () => {
   const { initialState, dispatch } = useReservationContext();

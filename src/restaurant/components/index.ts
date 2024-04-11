@@ -6,3 +6,5 @@ export { ReservationSteps } from './ReservationSteps';
 export { ReservationTurn } from './ReservationTurn';
 export { Contact } from './Contact';
 export { ReservationSummary } from './ReservationSummary';
+export { MenuRestaurant } from './MenuRestaurant';
+export { ContactDetails } from './ContactDetails';

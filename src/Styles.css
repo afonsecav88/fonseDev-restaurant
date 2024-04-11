@@ -6,7 +6,7 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: "Aptos","Proxima Nova","Verdana", "Roboto", "Raleway";
+  font-family: "Aptos", "Proxima Nova", "Verdana", "Roboto", "Raleway";
 }
 
 .navigate-Active {
@@ -14,7 +14,6 @@ body {
   border-top: #2a9d8f solid 2px;
   border-bottom: #2a9d8f 2px solid;
   padding: 0 rem;
-  /* border-radius: 0.3rem; */
 }
 
 .success-notification {
@@ -22,17 +21,9 @@ body {
   background-color: #2a9d8f;
   font-size: small;
 }
+
 .error-notification {
   color: #fcffff;
   background-color: #9d3b2a;
   font-size: small;
 }
-
-/* .navigate-Active {
-  background-color: #2a9d8f;
-  color: #2a9d8f;
-  padding-top: 0.2rem;
-  border-radius: 0.5rem;
-  width: 5.2rem;
-  height: 2.0rem;
-} */

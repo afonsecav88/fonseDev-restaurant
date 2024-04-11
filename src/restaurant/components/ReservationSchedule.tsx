@@ -9,7 +9,7 @@ export const ReservationSchedule = () => {
   const { initialState, dispatch } = useReservationContext();
   const { selectedSchedule, selectedDate } = initialState;
   const dayOfWeek = useGetDayOfWeek(selectedDate);
-  const [schedule, setSchedule] = useState<string | number>(selectedSchedule);
+  const [schedule, setSchedule] = useState<string | number>('');
 
   const getScheduleAccordingDay = () => {
     return dayOfWeek == 0 || dayOfWeek == 1 ? scheduleDataW : scheduleData;

@@ -1,9 +1,8 @@
 import { Card, CardBody, Select, SelectItem } from '@nextui-org/react';
 import { turnFoodsData, turnFoodsDataW } from '../mocks/turnsFoodsData';
-import { useReservationContext } from '../hooks/useReservationContext';
+import { useReservationContext, useGetDayOfWeek } from '../hooks/';
 import { selectTurn } from '../reducer/ReservationActions';
 import { useState } from 'react';
-import { useGetDayOfWeek } from '../hooks';
 
 export const ReservationTurn = () => {
   const { initialState, dispatch } = useReservationContext();
