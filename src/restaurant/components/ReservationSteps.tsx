@@ -20,7 +20,7 @@ export const ReservationSteps = () => {
   };
 
   return (
-    <div className="flex flex-col items-center pl-8">
+    <div className="flex flex-col items-center pl-2">
       <p className="text-center mb-2 font-semibold text-blue-400">
         Etapas de la reservación
       </p>
