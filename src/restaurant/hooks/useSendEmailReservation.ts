@@ -31,13 +31,6 @@ export const UseSendEmailReservation = (bodyMail: ReservationState) => {
       phone,
       message,
     }
-  );
-  // .then(() => {
-  //   successReservationNotification();
-  // })
-  // .catch((error) => {
-  //   errorReservationNotification();
-  //   throw new Error(`ha ocurrido un error: ${error}`);
-  // });
+  ); 
   notificationReservationPromise(sendMailReservationPromise);
 };

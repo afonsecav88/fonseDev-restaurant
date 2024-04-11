@@ -12,7 +12,7 @@ export const useNotification = () => {
       },
       error: (error) => {
         console.log(error);
-        return `Ha ocurrio un error: No se envió su mensaje`;
+        return `Ha ocurrio un error: No se envió su mensaje.`;
       },
     });
 
@@ -26,7 +26,7 @@ export const useNotification = () => {
       },
       error: (error) => {
         console.log(error);
-        return `Ha ocurrio un error: No se envió su reserva`;
+        return `Ha ocurrio un error: No se envió su reserva.`;
       },
     });
 
